@@ -222,7 +222,7 @@ const gameObject = function(_gameSettings) {
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
   return {getBuyPrice, getTimeLeft, withdraw, buyKeys, registerName};  
-}(_gameSettings);
+};
 const main = function() {
   async function updateVault(object) {
     setInterval(async function() {
