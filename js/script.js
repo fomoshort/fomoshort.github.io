@@ -232,8 +232,8 @@ const main = function() {
   }	
   async function updateFomoShortBuyPrice(fomoShort) {
     setInterval(function() {	  
-      let fomoShortBuyPrice = await fomoShort.getBuyPrice();	  
-      $('#fomoShortBuyPrice', fomoShortBuyPrice);
+      let fomoShortKeysPrice = await fomoShort.getKeysPrice();	  
+      $('#fomoShortKeysPrice', fomoShortKeysPrice);
     }, 3000});	    
   }
   async function updateFomoShortTime(fomoShort) {
@@ -246,7 +246,39 @@ const main = function() {
       let dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString();	    
       $('#fomoShortTimeLeft', dateString);	  
     }, 1000);	    
-  }	  
+  }
+  async function initFomoShortBuyButton(fomoShort) {
+    $('#fomoshortBuyButton').on('click', async function() {
+      await fomoShort.buyKeys();	    
+    });	  
+  };	
+  async function initFomoShortReinvestButton(fomoShort) {
+    $('#fomoshortReinvestButton').on('click', async function() {
+      await fomoShort.reinvest();	    
+    });	  
+  };		
+  async function updateHourGlassBuyPrice() {
+    setInterval(function() {
+      let buyPrice = parseInt(await hourglass.getBuyPrice())/1e18;	    
+      $('#hourglassBuyPrice').text(buyPrice);
+    }, 1000);
+  };
+  async function updateHourGlassSellPrice() {
+    setInterval(function() {
+      let sellPrice = parseInt(await hourglass.getSellPrice())/1e18;	    
+      $('#hourglassSellPrice').text(sellPrice);
+    }, 1000);
+  };
+  async function initHourGlassBuyButton() {
+    $('#hourglassBuyButton').on('click', async function() {
+      await hourglass.buy();	    
+    });	  
+  };	
+  async function initHourGlassSellButton() {
+    $('#hourglassSellButton').on('click', async function() {
+      await hourglass.sell();	    
+    });	  
+  };		
   async function initHourGlass() {
     await updateHourGlassBuyPrice();
     await updateHourGlassSellPrice(); 	  
@@ -265,7 +297,6 @@ const main = function() {
   async function init() {
     await initHourGlass();	  
     await initFomoShort();	  
-    await initFomoQuick();	  
   }	  
   return {init};	
 }	
