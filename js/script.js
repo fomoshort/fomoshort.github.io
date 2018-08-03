@@ -239,19 +239,19 @@ const main = function() {
   async function updateTime(object) {
     setInterval(async function() {	  
       object.name === "fomoShort" ? 
-        (let fomoShortTimeLeft = await object.getTimeLeft(),	  
-         let date = new Date(Date.now()/1000 - fomoShortTimeLeft),
-         let hours = date.getHours(),
-         let minutes = date.getMinutes()
-         let seconds = date.getSeconds(),
-         let dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
+        (fomoShortTimeLeft = await object.getTimeLeft(),	  
+         date = new Date(Date.now()/1000 - fomoShortTimeLeft),
+         hours = date.getHours(),
+         minutes = date.getMinutes()
+         seconds = date.getSeconds(),
+         dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
          $('#fomoShortTimeLeft', dateString)) :	
-        (let fomoQuickTimeLeft = await object.getTimeLeft(),	  
-         let date = new Date(Date.now()/1000 - fomoQuickTimeLeft),
-         let hours = date.getHours(),
-         let minutes = date.getMinutes()
-         let seconds = date.getSeconds(),
-         let dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
+        (fomoQuickTimeLeft = await object.getTimeLeft(),	  
+         date = new Date(Date.now()/1000 - fomoQuickTimeLeft),
+         hours = date.getHours(),
+         minutes = date.getMinutes()
+         seconds = date.getSeconds(),
+         dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
          $('#fomoQuickTimeLeft', dateString));	      
     }, 1000);	    
   }
