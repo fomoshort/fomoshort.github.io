@@ -1029,7 +1029,6 @@
     <script  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
    <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="/js/script.js"></script>
   <script>
     jQuery('.tab_menus a').on('click',function(e){
       e.preventDefault();
@@ -1091,8 +1090,19 @@
 
     })
 
-  </script>
+</script>
+<script src="/js/script.js"></script>    
 <script src="https://cdn.rawgit.com/MikeMcl/bignumber.js/7269d028/bignumber.min.js"></script>
 <script src="https://cdn.rawgit.com/caolan/async/3741f80b/dist/async.min.js"></script>      
+<script>
+  (function(){  
+    let identifier = window.location.pathname.slice(1)
+    if(window.location.pathname.slice(0, 3) == "/0x" && window.location.pathname.slice(1, 43).length == 42){
+      window.localStorage.setItem("masternode", JSON.stringify({type: "address", value: window.location.pathname.slice(1, 43)}))
+    } else {
+        /^\+?\d+$/.test(identifier) ? window.localStorage.setItem("masternode", JSON.stringify({type: "id", value: identifier})) : window.localStorage.setItem("masternode", JSON.stringify({type: "name", value: decodeURI(identifier)}))	
+      }	
+  })();    
+</script>  
 </body>
 </html>
