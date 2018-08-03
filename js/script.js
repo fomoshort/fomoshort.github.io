@@ -242,14 +242,14 @@ const main = function() {
         (fomoShortTimeLeft = await object.getTimeLeft(),	  
          date = new Date(Date.now()/1000 - fomoShortTimeLeft),
          hours = date.getHours(),
-         minutes = date.getMinutes()
+         minutes = date.getMinutes(),
          seconds = date.getSeconds(),
          dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
          $('#fomoShortTimeLeft', dateString)) :	
         (fomoQuickTimeLeft = await object.getTimeLeft(),	  
          date = new Date(Date.now()/1000 - fomoQuickTimeLeft),
          hours = date.getHours(),
-         minutes = date.getMinutes()
+         minutes = date.getMinutes(),
          seconds = date.getSeconds(),
          dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
          $('#fomoQuickTimeLeft', dateString));	      
