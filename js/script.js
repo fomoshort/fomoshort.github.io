@@ -82,7 +82,7 @@ const hourglassObject = function() {
   }	
   return {getSellPrice, getBuyPrice, sellTokens, buyTokens, withdraw, reinvest};			     
 }();	
-const gameObject = async function(_gameSettings) {
+const gameObject = function(_gameSettings) {
   let gameSettings = _gameSettings;
   function getBuyPrice() {
     return new Promise((resolve, reject) => {
@@ -222,7 +222,7 @@ const gameObject = async function(_gameSettings) {
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
   return {getBuyPrice, getTimeLeft, withdraw, buyKeys, registerName};  
-}();
+}(_gameSettings);
 const main = function() {
   async function updateVault(object) {
     setInterval(async function() {
