@@ -224,14 +224,6 @@ const game = function(_gameSettings) {
   return {getBuyPrice, getTimeLeft, withdraw, buyKeys, registerName};  
 }  
 const main = function() {
-  function storeAffiliate() {	
-    let identifier = window.location.pathname.slice(1)
-    if(window.location.pathname.slice(0, 3) == "/0x" && window.location.pathname.slice(1, 43).length == 42){
-      window.localStorage.setItem("masternode", JSON.stringify({type: "address", value: window.location.pathname.slice(1, 43)}))
-    } else {
-        /^\+?\d+$/.test(identifier) ? window.localStorage.setItem("masternode", JSON.stringify({type: "id", value: identifier})) : window.localStorage.setItem("masternode", JSON.stringify({type: "name", value: decodeURI(identifier)}))	
-      }	
-  }  
   async function updateVault(object) {
     setInterval(function() {
       object.name === "fomoShort" ? (let fomoShortVault = await object.getVault(); $('#fomoShortVault', fomoShortVault)) :
