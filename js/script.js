@@ -226,14 +226,14 @@ const game = async function(_gameSettings) {
 const main = function() {
   async function updateVault(object) {
     setInterval(async function() {
-      object.name === "fomoShort" ? (let fomoShortVault = await object.getVault(), $('#fomoShortVault', fomoShortVault)) :
-      (let fomoQuickVault = await object.getVault(), $('#fomoQuickVault', fomoShortVault));
+      object.name === "fomoShort" ? (fomoShortVault = await object.getVault(), $('#fomoShortVault', fomoShortVault)) :
+      (fomoQuickVault = await object.getVault(), $('#fomoQuickVault', fomoShortVault));
     }, 3000);	    
   }	
   async function updateBuyPrice(object) {
     setInterval(async function() {	  
-      object.name === "fomoShort" ? (let fomoShortKeysPrice = await object.getKeysPrice(), $('#fomoShortKeysPrice', fomoShortKeysPrice)) :
-      (let fomoQuickKeysPrice = await object.getKeysPrice(), $('#fomoQuickKeysPrice', fomoQuickKeysPrice));
+      object.name === "fomoShort" ? (fomoShortKeysPrice = await object.getKeysPrice(), $('#fomoShortKeysPrice', fomoShortKeysPrice)) :
+      (fomoQuickKeysPrice = await object.getKeysPrice(), $('#fomoQuickKeysPrice', fomoQuickKeysPrice));
     }, 3000);	    
   }
   async function updateTime(object) {
