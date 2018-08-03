@@ -431,7 +431,7 @@ button.btn.btn-primary.send_Eth:hover img{
 	transition: all .3s ease;
 	cursor: pointer;
 }
-.teamSec ul li:hover{
+.teamSec ul li:hover, .teamSec ul li.active {
 	filter: drop-shadow(0 0 1px rgba(186,244,22,.7)) drop-shadow(0 0 55px rgba(186,244,22,.7)) drop-shadow(0 0 7px rgba(186,244,22,.7));
 }
 .teamSec ul li img{
