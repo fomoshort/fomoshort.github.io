@@ -150,7 +150,7 @@ const game = function(_gameSettings) {
     let data = gameContract.withdraw.getData();
     await tx.sendTransaction({ from:userAddress, to:gameSettings.address, data:data});
   }
-  async function buyKeys() {
+  async function buyKeys(_amount) {
     let userAddress = localStorage.getItem("userAddress");
     let team = localStorage.getItem("team");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
@@ -169,18 +169,16 @@ const game = function(_gameSettings) {
         _affcode = masternode.type.address;
         data = gameContract.buyXAddr(_affcode, team).getData();
     }
-    let inputValue = $('#tab1 > div.input-group.custom_group > input').val();
-    let amount = math.toFixed(new BigNumber(inputValue).mul(10,18));
+    let amount = math.toFixed(new BigNumber(_amount).mul(10,18));
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});
   }
-  async function reinvestBuy() {
+  async function reinvestBuy(_amount) {
     let userAddress = localStorage.getItem("userAddress");
     let team = localStorage.getItem("team");
     let keyPrice = localStorage.getItem("keyPrice");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
-    let inputValue = $('#tab1 > div.input-group.custom_group > input').val();
-    let amount = math.toFixed(new BigNumber(inputValue).mul(10,18));
+    let amount = math.toFixed(new BigNumber(_amount).mul(10,18));
     let value =  math.toFixed(await getKeysPrice(amount));		  
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let _affcode, data;
@@ -199,7 +197,7 @@ const game = function(_gameSettings) {
     }
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data});
   }	
-  async function registerName() {
+  async function registerName(_amount) {
     let userAddress = localStorage.getItem("userAddress");
     let team = localStorage.getItem("team");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
@@ -219,8 +217,7 @@ const game = function(_gameSettings) {
         _affcode = masternode.type.address;
         data = gameContract.registerNameXaddr(name, _affcode, false).getData();
     }
-    let inputValue = $('#tab1 > div.input-group.custom_group > input').val();
-    let amount = math.toFixed(new BigNumber(inputValue).mul(10,18));
+    let amount = math.toFixed(new BigNumber(_amount).mul(10,18));
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
@@ -235,21 +232,21 @@ const main = function() {
         /^\+?\d+$/.test(identifier) ? window.localStorage.setItem("masternode", JSON.stringify({type: "id", value: identifier})) : window.localStorage.setItem("masternode", JSON.stringify({type: "name", value: decodeURI(identifier)}))	
       }	
   }  
-  async function updateFomoShortVault(fomoShort) {
+  async function updateFomoShortVault(_fomoShort) {
     setInterval(function() {	  
-      let fomoShortVault = await fomoShort.getVault();	  
+      let fomoShortVault = await _fomoShort.getVault();	  
       $('#fomoShortVault', fomoShortVault);
     }, 3000});	    
   }	
-  async function updateFomoShortBuyPrice(fomoShort) {
+  async function updateFomoShortBuyPrice(_fomoShort) {
     setInterval(function() {	  
-      let fomoShortKeysPrice = await fomoShort.getKeysPrice();	  
+      let fomoShortKeysPrice = await _fomoShort.getKeysPrice();	  
       $('#fomoShortKeysPrice', fomoShortKeysPrice);
     }, 3000});	    
   }
-  async function updateFomoShortTime(fomoShort) {
+  async function updateFomoShortTime(_fomoShort) {
     setInterval(function() {	  
-      let fomoShortTimeLeft = await fomoShort.getTimeLeft();	  
+      let fomoShortTimeLeft = await _fomoShort.getTimeLeft();	  
       let date = new Date(Date.now()/1000 - fomoShortTimeLeft);
       let hours = date.getHours();
       let minutes = date.getMinutes();
@@ -258,14 +255,14 @@ const main = function() {
       $('#fomoShortTimeLeft', dateString);	  
     }, 1000);	    
   }
-  async function initFomoShortBuyButton(fomoShort) {
+  async function initFomoShortBuyButton(_fomoShort) {
     $('#fomoshortBuyButton').on('click', async function() {
-      await fomoShort.buyKeys();	    
+      await _fomoShort.buyKeys();	    
     });	  
   };	
-  async function initFomoShortReinvestButton(fomoShort) {
+  async function initFomoShortReinvestButton(_fomoShort) {
     $('#fomoshortReinvestButton').on('click', async function() {
-      await fomoShort.reinvest();	    
+      await _fomoShort.reinvest();	    
     });	  
   };		
   async function updateHourGlassBuyPrice() {
