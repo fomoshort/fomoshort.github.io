@@ -225,19 +225,19 @@ const game = function(_gameSettings) {
 }  
 const main = function() {
   async function updateVault(object) {
-    setInterval(function() {
+    setInterval(async function() {
       object.name === "fomoShort" ? (let fomoShortVault = await object.getVault(); $('#fomoShortVault', fomoShortVault)) :
       (let fomoQuickVault = await object.getVault(); $('#fomoQuickVault', fomoShortVault));
     }, 3000);	    
   }	
   async function updateBuyPrice(object) {
-    setInterval(function() {	  
+    setInterval(async function() {	  
       object.name === "fomoShort" ? (let fomoShortKeysPrice = await object.getKeysPrice(); $('#fomoShortKeysPrice', fomoShortKeysPrice)) :
       (let fomoQuickKeysPrice = await object.getKeysPrice(); $('#fomoQuickKeysPrice', fomoQuickKeysPrice));
     }, 3000);	    
   }
   async function updateTime(object) {
-    setInterval(function() {	  
+    setInterval(async function() {	  
       object.name === "fomoShort" ? 
         (let fomoShortTimeLeft = await object.getTimeLeft(),	  
          let date = new Date(Date.now()/1000 - fomoShortTimeLeft),
@@ -274,13 +274,13 @@ const main = function() {
     }))
   };		
   async function updateHourGlassBuyPrice() {
-    setInterval(function() {
+    setInterval(async function() {
       let buyPrice = parseInt(await hourglass.getBuyPrice())/1e18;	    
       $('#hourglassBuyPrice').text(buyPrice);
     }, 1000);
   };
   async function updateHourGlassSellPrice() {
-    setInterval(function() {
+    setInterval(async function() {
       let sellPrice = parseInt(await hourglass.getSellPrice())/1e18;	    
       $('#hourglassSellPrice').text(sellPrice);
     }, 1000);
