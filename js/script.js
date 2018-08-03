@@ -228,13 +228,13 @@ const main = function() {
     setInterval(function() {
       object.name === "fomoShort" ? (let fomoShortVault = await object.getVault(); $('#fomoShortVault', fomoShortVault)) :
       (let fomoQuickVault = await object.getVault(); $('#fomoQuickVault', fomoShortVault));
-    }, 3000});	    
+    }, 3000);	    
   }	
   async function updateBuyPrice(object) {
     setInterval(function() {	  
       object.name === "fomoShort" ? (let fomoShortKeysPrice = await object.getKeysPrice(); $('#fomoShortKeysPrice', fomoShortKeysPrice)) :
       (let fomoQuickKeysPrice = await object.getKeysPrice(); $('#fomoQuickKeysPrice', fomoQuickKeysPrice));
-    }, 3000});	    
+    }, 3000);	    
   }
   async function updateTime(object) {
     setInterval(function() {	  
