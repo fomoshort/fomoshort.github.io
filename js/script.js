@@ -305,6 +305,19 @@ const main = function() {
       await hourglass.reinvest();	    
     });	  
   };	
+  async function initFomoQuickTeamSelector() {
+    $('#tab1-2 > div.teamSec > ul').on('click', function(e) {
+      console.log(e.currentTarget);	    
+      $(e.currentTarget).addClass("active");  	    
+    });	     
+  }	
+  async function initFomoShortTeamSelector() {
+    $('#tab1 > div.teamSec > ul').on('click', function(e) {
+      $(e.currentTarget).hasClass("active") ?
+      ($(e.currentTarget).removeClass("active"), $(e.currentTarget).addClass("active")) :	      
+      $(e.currentTarget).addClass("active");  	    
+    });	     
+  }
   async function initHourGlass() {
     await updateHourGlassBuyPrice();
     await updateHourGlassSellPrice(); 	  
