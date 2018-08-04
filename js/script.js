@@ -191,7 +191,7 @@ const gameObject = function(_gameSettings) {
         _affcode = masternode.type.address;
         data = gameContract.buyXAddr(_affcode, team).getData();
     }
-    let amount = math.toFixed(new BigNumber(_amount).mul(10,18));
+    let amount = math.toFixed(new BigNumber(_amount).mul(Math.pow(10,18)));
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});
   }
@@ -200,7 +200,7 @@ const gameObject = function(_gameSettings) {
     let team = localStorage.getItem("team");
     let keyPrice = localStorage.getItem("keyPrice");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
-    let amount = math.toFixed(new BigNumber(_amount).mul(10,18));
+    let amount = math.toFixed(new BigNumber(_amount).mul(Math.pow(10,18)));
     let value =  math.toFixed(await getKeysPrice(amount));		  
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let _affcode, data;
@@ -239,7 +239,7 @@ const gameObject = function(_gameSettings) {
         _affcode = masternode.type.address;
         data = gameContract.registerNameXaddr(name, _affcode, false).getData();
     }
-    let amount = math.toFixed(new BigNumber(_amount).mul(10,18));
+    let amount = math.toFixed(new BigNumber(_amount).mul(Math.pow(10,18)));
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
