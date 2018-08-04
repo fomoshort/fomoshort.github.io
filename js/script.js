@@ -328,15 +328,17 @@ const main = function() {
     });	  
   };	
   function initFomoQuickTeamSelector() {
-    $('#tab1-2 > div.teamSec > ul').on('click', function(e) {
-      $(e.currentTarget).addClass("active");  	    
-    });	     
+    $('#tab1-2 > div.teamSec > ul > li').on('click', function(e) {
+      $(e.currentTarget).hasClass("active") ?
+      $(e.currentTarget).removeClass("active") :	      
+      ($(e.currentTarget).addClass("active"), localStorage.setItem("team", $(e.currentTarget).attr("team")));  	    
+    });	      
   }	
   function initFomoShortTeamSelector() {
     $('#tab1 > div.teamSec > ul > li').on('click', function(e) {
       $(e.currentTarget).hasClass("active") ?
       $(e.currentTarget).removeClass("active") :	      
-      $(e.currentTarget).addClass("active");  	    
+      ($(e.currentTarget).addClass("active"), localStorage.setItem("team", $(e.currentTarget).attr("team")));  	    
     });	     
   }
   async function initHourGlass() {
