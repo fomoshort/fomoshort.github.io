@@ -253,9 +253,11 @@ const main = function() {
     }, 3000);	    
   }	
   async function updateBuyPrice(object) {
-    setInterval(async function() {
-      object.name === "fomoShort" ? (fomoShortKeysPrice = await object.getBuyPrice(), $('#fomoShortKeysPrice', fomoShortKeysPrice)) :
-      (fomoQuickKeysPrice = await object.getBuyPrice(), $('#fomoQuickKeysPrice', fomoQuickKeysPrice));
+    setInterval(async function() {	    
+      object.name === "fomoShort" ? (fomoShortKeysPrice = await object.getBuyPrice(), 
+      console.log(fomoShortKeysPrice), $('#fomoShortKeysPrice').text(fomoShortKeysPrice)) :
+      (fomoQuickKeysPrice = await object.getBuyPrice(),
+      console.log(fomoQuickKeysPrice), $('#fomoQuickKeysPrice').text(fomoQuickKeysPrice));
     }, 3000);	    
   }
   async function returnDateString(object) {
