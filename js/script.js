@@ -243,7 +243,7 @@ const gameObject = function(_gameSettings) {
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
-  return {getBuyPrice, getTimeLeft, getVault, withdraw, buyKeys, registerName};  
+  return {getBuyPrice, getTimeLeft, getVault, withdraw, buyKeys, reinvestBuy, registerName};  
 };
 const main = function() {
   async function updateVault(object) {
