@@ -280,7 +280,7 @@ const main = function() {
     }, 3000);
   }	  
   async function updatePlayerInfo(object) {
-    setInterval(function() {
+    setInterval(async function() {
       object.name === "fomoShort" ? (playerInfo = await object.getPlayerInfo(), $('#fomoShortPlayerKeys').text(playerInfo[5])) :
       (playerInfo = await object.getPlayerInfo(), $('#fomoQuickPlayerKeys').text(playerInfo[5]));
     }, 3000);	    
