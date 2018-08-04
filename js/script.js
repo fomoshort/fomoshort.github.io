@@ -342,13 +342,15 @@ const main = function() {
     });	     
   }	
   function initFomoQuickBuyAmountIncrementor() {
-    $('#fomoQuickButtons > ul > li').on('click', function(e) {    	      
-      console.log(parseInt($(e.currentTarget).children('a').val()));
+    $('#fomoQuickButtons > ul > li').on('click', function(e) {    	        
+      console.log($(e.currentTarget));
+      console.log($(e.currentTarget).children('a'));
     });	     
   }	
   function initFomoShortBuyAmountIncrementor() {
     $('#fomoQuickButtons > ul > li').on('click', function(e) {    	      
-      console.log(parseInt($(e.currentTarget).children('a').val()));
+      console.log($(e.currentTarget));
+      console.log($(e.currentTarget).children('a'));
     });	     
   }	
   async function initHourGlass() {
