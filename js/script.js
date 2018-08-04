@@ -334,9 +334,8 @@ const main = function() {
   }	
   function initFomoShortTeamSelector() {
     $('#tab1 > div.teamSec > ul > li').on('click', function(e) {
-      console.log(e.currentTarget);	    
       $(e.currentTarget).hasClass("active") ?
-      ($(e.currentTarget).removeClass("active"), $(e.currentTarget).addClass("active")) :	      
+      $(e.currentTarget).removeClass("active") :	      
       $(e.currentTarget).addClass("active");  	    
     });	     
   }
