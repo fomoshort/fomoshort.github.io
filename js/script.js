@@ -148,8 +148,9 @@ const gameObject = function(_gameSettings) {
   }	
   function getPlayerInfo() {
     return new Promise((resolve, reject) => {
+      let userAddress = localStorage.getItem("userAddress");	    
       let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
-      gameContract.getPlayerInfo.call(function(err, result) {
+      gameContract.getPlayerInfoByAddress.call(userAddress, function(err, result) {
         if(!err) {
           resolve(result);
 	} else {
