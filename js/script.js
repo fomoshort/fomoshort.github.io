@@ -252,7 +252,7 @@ const main = function() {
          minutes = date.getMinutes(),
          seconds = date.getSeconds(),
          dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
-         $('#fomoQuickTimeLeft').text(dateString);	      
+         $('#fomoQuickTimeLeft').text(dateString));	      
     }, 1000);	    
   }
   async function initBuyButton(object) {
