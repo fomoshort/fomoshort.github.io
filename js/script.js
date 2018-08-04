@@ -134,10 +134,10 @@ const gameObject = function(_gameSettings) {
     });	      
   }	  
 	
-  function getRoundInfo() {
+  function getRound() {
     return new Promise((resolve, reject) => {
       let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
-      gameContract.getRoundInfo.call(function(err, result) {
+      gameContract.getRound(function(err, result) {
         if(!err) {
           resolve(result);
 	} else {
@@ -145,7 +145,19 @@ const gameObject = function(_gameSettings) {
 	}
       });
     });
-  }		  
+  }	
+  function getPlayerInfo() {
+    return new Promise((resolve, reject) => {
+      let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
+      gameContract.getPlayerInfo.call(function(err, result) {
+        if(!err) {
+          resolve(result);
+	} else {
+	    reject(err);
+	}
+      });
+    });
+  }	  
   function getKeysPrice(_amount) {
     return new Promise((resolve, reject) => {
       let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
@@ -243,18 +255,32 @@ const gameObject = function(_gameSettings) {
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
-  return {getBuyPrice, getTimeLeft, getVault, withdraw, buyKeys, reinvestBuy, registerName};  
+  return {getBuyPrice, getTimeLeft, getRound, getPlayerInfo, getVault, withdraw, buyKeys, reinvestBuy, registerName};  
 };
 const main = function() {
   async function updateVault(object) {
     setInterval(async function() {
-      object.name === "fomoShort" ? (fomoShortVault = await object.getVault(), console.log(fomoShortVault),
+      object.name === "fomoShort" ? (fomoShortVault = await object.getVault(),
       $('#fomoShortGameEarnings').text(fomoShortVault[0]),
       $('#fomoShortGameWinnings').text(fomoShortVault[1]), $('#fomoShortAffiliateEarnings').text(fomoShortVault[2])) :
       (fomoQuickVault = await object.getVault(), $('#fomoQuickGameEarnings').text(fomoQuickVault[0]),
       $('#fomoQuickGameWinnings').text(fomoQuickVault[1]), $('#fomoQuickAffiliateEarnings').text(fomoQuickVault[2]));
     }, 3000);	    
   }	
+  async function updateRoundInfo(object) {
+    setInterval(async function() {
+      object.name === "fomoShort" ? (fomoShortRoundID = await object.getCurrentRoundID(), 
+      fomoShortRoundInfo = await object.getRound(fomoShortRoundID), roundETH = fomoShortRoundInfo[6],				     
+      roundKeys = fomoShortRoundInfo[5], roundPot = fomoShortRoundInfo[7]) :
+      (fomoQuickRoundInfo = await object.getCurrentInfo());				     
+    }, 3000);
+  }	  
+  async function updatePlayerInfo(object) {
+    setInterval(function() {
+      object.name === "fomoShort" ? (playerInfo = await object.getPlayerInfo(), $('#fomoShortPlayerKeys').text(playerInfo[5])) :
+      (playerInfo = await object.getPlayerInfo(), $('#fomoQuickPlayerKeys').text(playerInfo[5]));
+    }, 3000);	    
+  }	  
   async function updateBuyPrice(object) {
     setInterval(async function() {	    
       object.name === "fomoShort" ? (fomoShortKeysPrice = await object.getBuyPrice(), 
@@ -371,7 +397,8 @@ const main = function() {
     await initHourGlassWithdrawButton();	  
     await initHourGlassReinvestButton();	  
   }	
-  async function initGame(object) { 
+  async function initGame(object) {
+    await updatePlayerInfo(object);	  
     await updateVault(object);	  
     await updateBuyPrice(object);
     await updateTime(object);	 
