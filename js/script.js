@@ -270,9 +270,13 @@ const main = function() {
   async function updateRoundInfo(object) {
     setInterval(async function() {
       object.name === "fomoShort" ? (fomoShortRoundID = await object.getCurrentRoundID(), 
-      fomoShortRoundInfo = await object.getRound(fomoShortRoundID), roundETH = fomoShortRoundInfo[6],				     
-      roundKeys = fomoShortRoundInfo[5], roundPot = fomoShortRoundInfo[7]) :
-      (fomoQuickRoundInfo = await object.getCurrentInfo());				     
+      fomoShortRoundInfo = await object.getRound(fomoShortRoundID), $('fomoShortAmountInvested').text(fomoShortRoundInfo[6]),				     
+      $('fomoShortKeys').text(fomoShortRoundInfo[5]), $('fomoShortPot').text(fomoShortRoundInfo[7]),
+      $('fomoShortEarnings').text(fomoShortRoundInfo[8])) :
+      (fomoQuickRoundID = await object.getCurrentRoundID(), 
+      fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID), $('fomoQuickAmountInvested').text(fomoQuickRoundInfo[6]),				     
+      $('fomoQuickKeys').text(fomoQuickRoundInfo[5]), $('fomoQuickPot').text(fomoQuickRoundInfo[7]),
+      $('fomoQuickEarnings').text(fomoQuickRoundInfo[8]));				     
     }, 3000);
   }	  
   async function updatePlayerInfo(object) {
