@@ -287,10 +287,10 @@ const main = function() {
   async function initReinvestButton(object) {
     object.name === "fomoShort" ? 	  
     ($('#fomoShortReinvestButton').on('click', async function() {
-      await object.reinvest();	    
+      await object.reinvestBuy(parseInt($('#fomoShortBuyAmount').val()));	    
     })) :
     ($('#fomoQuickReinvestButton').on('click', async function() {
-      await object.reinvest();	    
+      await object.reinvestBuy(parseInt($('#fomoQuickBuyAmount').val()));	    
     }))
   };		
   async function updateHourGlassBuyPrice() {
