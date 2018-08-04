@@ -65,7 +65,7 @@ const hourglassObject = function() {
     let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
     let data = hourglassContract.buy.getData(p3dRefferal);
     let keyPrice = new BigNumber(await getBuyPrice());	   
-    let value = math.toFixed(parseFloat(new BigNumber(amount).mul(Math.pow(10,18)).mul(keyPrice)));	  
+    let value = math.toFixed(parseFloat(new BigNumber(amount).multipliedBy(Math.pow(10,18)).multipliedBy(keyPrice)));	  
     await tx.sendTransaction({from:userAddress, to:hourglass.address, data:data, value:value});	  
   }
   async function withdraw() {
@@ -191,7 +191,7 @@ const gameObject = function(_gameSettings) {
         _affcode = masternode.type.address;
         data = gameContract.buyXAddr(_affcode, team).getData();
     }
-    let amount = math.toFixed(new BigNumber(_amount).mul(Math.pow(10,18)));
+    let amount = math.toFixed(new BigNumber(_amount).multipliedBy(Math.pow(10,18)));
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});
   }
@@ -200,7 +200,7 @@ const gameObject = function(_gameSettings) {
     let team = localStorage.getItem("team");
     let keyPrice = localStorage.getItem("keyPrice");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
-    let amount = math.toFixed(new BigNumber(_amount).mul(Math.pow(10,18)));
+    let amount = math.toFixed(new BigNumber(_amount).multipliedBy(Math.pow(10,18)));
     let value =  math.toFixed(await getKeysPrice(amount));		  
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let _affcode, data;
@@ -239,7 +239,7 @@ const gameObject = function(_gameSettings) {
         _affcode = masternode.type.address;
         data = gameContract.registerNameXaddr(name, _affcode, false).getData();
     }
-    let amount = math.toFixed(new BigNumber(_amount).mul(Math.pow(10,18)));
+    let amount = math.toFixed(new BigNumber(_amount).multipliedBy(Math.pow(10,18)));
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
@@ -307,13 +307,13 @@ const main = function() {
   };
   async function initHourGlassBuyButton() {
     $('#hourglassBuyButton').on('click', async function() {
-      let amount = math.toFixed(new BigNumber($(e.currentTarget).val()).mul(Math.pow(10,18)));	    
+      let amount = math.toFixed(new BigNumber($(e.currentTarget).val()).multipliedBy(Math.pow(10,18)));	    
       await hourglassObject.buy(amount);	    
     });	  
   };	
   async function initHourGlassSellButton() {
     $('#hourglassSellButton').on('click', async function() {
-      let amount = math.toFixed(new BigNumber($(e.currentTarget).val()).mul(Math.pow(10,18)));	    
+      let amount = math.toFixed(new BigNumber($(e.currentTarget).val()).multipliedBy(Math.pow(10,18)));	    
       await hourglassObject.sell(amount);	    
     });	  
   };	
