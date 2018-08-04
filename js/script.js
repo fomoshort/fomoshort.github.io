@@ -260,12 +260,12 @@ const main = function() {
     }, 3000);	    
   }
   async function returnDateString(object) {
-    let timeLeft = await object.getTimeLeft(),	  
-    let date = new Date(Date.now()/1000 - timeLeft),
-    let hours = date.getHours(),
-    let minutes = date.getMinutes(),
-    let seconds = date.getSeconds(),
-    return dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	  
+    let timeLeft = await object.getTimeLeft(); 
+    let date = new Date(Date.now()/1000 - timeLeft);
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    return dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString();
   }	  
   async function updateTime(object) {
     setInterval(async function() {
