@@ -343,12 +343,12 @@ const main = function() {
   }	
   function initFomoQuickBuyAmountIncrementor() {
     $('#fomoQuickButtons > ul > li').on('click', function(e) {   
-      $('#fomoQuickBuyAmount').val(parseInt($('#fomoQuickBuyAmount').val()) * parseInt($(e.currentTarget).children('a').attr('value')));
+      $('#fomoQuickBuyAmount').val(parseInt($('#fomoQuickBuyAmount').val()) + parseInt($(e.currentTarget).children('a').attr('value')));
     });	     
   }	
   function initFomoShortBuyAmountIncrementor() {
     $('#fomoShortButtons > ul > li').on('click', function(e) {    	      
-      $('#fomoShortBuyAmount').val(parseInt($('#fomoShortBuyAmount').val()) * parseInt($(e.currentTarget).children('a').attr('value')));
+      $('#fomoShortBuyAmount').val(parseInt($('#fomoShortBuyAmount').val()) + parseInt($(e.currentTarget).children('a').attr('value')));
     });	     
   }	
   async function initHourGlass() {
