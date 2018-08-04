@@ -342,15 +342,13 @@ const main = function() {
     });	     
   }	
   function initFomoQuickBuyAmountIncrementor() {
-    $('#fomoQuickButtons > ul > li').on('click', function(e) {    	        
-      console.log($(e.currentTarget));
-      console.log($(e.currentTarget).children('a'));
+    $('#fomoQuickButtons > ul > li').on('click', function(e) {   
+      $('#fomoQuickBuyAmount').val(parseInt($('#fomoQuickBuyAmount').val()) * parseInt($(e.currentTarget).children('a').attr('value')));
     });	     
   }	
   function initFomoShortBuyAmountIncrementor() {
-    $('#fomoQuickButtons > ul > li').on('click', function(e) {    	      
-      console.log($(e.currentTarget));
-      console.log($(e.currentTarget).children('a'));
+    $('#fomoShortButtons > ul > li').on('click', function(e) {    	      
+      $('#fomoShortBuyAmount').val(parseInt($('#fomoShortBuyAmount').val()) * parseInt($(e.currentTarget).children('a').attr('value')));
     });	     
   }	
   async function initHourGlass() {
