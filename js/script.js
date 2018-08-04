@@ -336,9 +336,9 @@ const main = function() {
   }	
   function initFomoShortTeamSelector() {
     $('#tab1 > div.teamSec > ul > li').on('click', function(e) {
-      $(e.currentTarget).hasClass("active") ?
-      $(e.currentTarget).removeClass("active") :	      
-      ($(e.currentTarget).addClass("active"), localStorage.setItem("team", $(e.currentTarget).attr("team")));  	    
+      $('.active').removeClass("active");    	      
+      $(e.currentTarget).addClass("active");
+      localStorage.setItem("team", $(e.currentTarget).attr("team"));  	    
     });	     
   }
   async function initHourGlass() {
