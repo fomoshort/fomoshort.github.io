@@ -245,7 +245,7 @@ const main = function() {
          minutes = date.getMinutes(),
          seconds = date.getSeconds(),
          dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
-         $('#fomoShortTimeLeft').text(dateString) :	
+         $('#fomoShortTimeLeft').text(dateString)) :	
         (fomoQuickTimeLeft = await object.getTimeLeft(),	  
          date = new Date(Date.now()/1000 - fomoQuickTimeLeft),
          hours = date.getHours(),
