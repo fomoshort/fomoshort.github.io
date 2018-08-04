@@ -296,6 +296,15 @@ const main = function() {
       await object.reinvestBuy(parseInt($('#fomoQuickBuyAmount').val()));	    
     }))
   };		
+  async function initWithdrawButton(object) {
+    object.name === "fomoShort" ? 	  
+    ($('#fomoShortWithdrawDividends').on('click', async function() {
+      await object.withdraw();	    
+    })) :
+    ($('#fomoQuickWithdrawDividends').on('click', async function() {
+      await object.withdraw();	    
+    }))
+  };	
   async function updateHourGlassBuyPrice() {
     setInterval(async function() {
       let buyPrice = parseInt(await hourglassObject.getBuyPrice())/1e18;	    
@@ -368,6 +377,7 @@ const main = function() {
     await updateTime(object);	 
     await initBuyButton(object);
     await initReinvestButton(object);	  
+    await initWithdrawButton(object);	  
   }	
   async function initFomoShort() {
     initFomoShortBuyAmountIncrementor();
