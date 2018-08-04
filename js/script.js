@@ -245,6 +245,7 @@ const main = function() {
          minutes = date.getMinutes(),
          seconds = date.getSeconds(),
          dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
+	 console.log(dateString),
          $('#fomoShortTimeLeft', dateString.toString())) :	
         (fomoQuickTimeLeft = await object.getTimeLeft(),	  
          date = new Date(Date.now()/1000 - fomoQuickTimeLeft),
@@ -252,6 +253,7 @@ const main = function() {
          minutes = date.getMinutes(),
          seconds = date.getSeconds(),
          dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
+	 console.log(dateString),
          $('#fomoQuickTimeLeft', dateString.toString()));	      
     }, 1000);	    
   }
