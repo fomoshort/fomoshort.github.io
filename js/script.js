@@ -249,7 +249,7 @@ const main = function() {
   async function updateVault(object) {
     setInterval(async function() {
       object.name === "fomoShort" ? (fomoShortVault = await object.getVault(), $('#fomoShortVault', fomoShortVault)) :
-      (fomoQuickVault = await object.getVault(), $('#fomoQuickVault', fomoShortVault));
+      (fomoQuickVault = await object.getVault(), $('#fomoQuickVault', fomoQuickVault));
     }, 3000);	    
   }	
   async function updateBuyPrice(object) {
