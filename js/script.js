@@ -248,7 +248,8 @@ const gameObject = function(_gameSettings) {
 const main = function() {
   async function updateVault(object) {
     setInterval(async function() {
-      object.name === "fomoShort" ? (fomoShortVault = await object.getVault(), $('#fomoShortVault', fomoShortVault)) :
+      object.name === "fomoShort" ? (fomoShortVault = await object.getVault(), console.log(fomoShortVault),
+      $('#fomoShortVault', fomoShortVault)) :
       (fomoQuickVault = await object.getVault(), $('#fomoQuickVault', fomoQuickVault));
     }, 3000);	    
   }	
