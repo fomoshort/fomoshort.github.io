@@ -37,7 +37,7 @@ const hourglassObject = function() {
   function getSellPrice() {
     return new Promise((resolve, reject) => {
       let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
-      hourglassContract.getSellPrice.call(function(err, result) {
+      hourglassContract.sellPrice.call(function(err, result) {
 	if(!err) { resolve(result) }
         else { reject(err) }      
       });	      
@@ -46,7 +46,7 @@ const hourglassObject = function() {
   function getBuyPrice() {
     return new Promise((resolve, reject) => {
       let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
-      hourglassContract.getBuyPrice.call(function(err, result) {
+      hourglassContract.buyPrice.call(function(err, result) {
 	if(!err) { resolve(result) }
         else { reject(err) }      
       });	      
