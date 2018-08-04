@@ -327,12 +327,12 @@ const main = function() {
       await hourglassObject.reinvest();	    
     });	  
   };	
-  async function initFomoQuickTeamSelector() {
+  function initFomoQuickTeamSelector() {
     $('#tab1-2 > div.teamSec > ul').on('click', function(e) {
       $(e.currentTarget).addClass("active");  	    
     });	     
   }	
-  async function initFomoShortTeamSelector() {
+  function initFomoShortTeamSelector() {
     $('#tab1 > div.teamSec > ul').on('click', function(e) {
       $(e.currentTarget).hasClass("active") ?
       ($(e.currentTarget).removeClass("active"), $(e.currentTarget).addClass("active")) :	      
@@ -369,6 +369,7 @@ const main = function() {
     await initFomoQuick();	  
   }	  
   async function init() {
+    initFomoShortTeamSelector();	  
     await initHourGlass();	  
     await initAllGames();	  
   }	  
