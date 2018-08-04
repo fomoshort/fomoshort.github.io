@@ -329,9 +329,9 @@ const main = function() {
   };	
   function initFomoQuickTeamSelector() {
     $('#tab1-2 > div.teamSec > ul > li').on('click', function(e) {
-      $(e.currentTarget).hasClass("active") ?
-      $(e.currentTarget).removeClass("active") :	      
-      ($(e.currentTarget).addClass("active"), localStorage.setItem("team", $(e.currentTarget).attr("team")));  	    
+      $('.active').removeClass("active");    	      
+      $(e.currentTarget).addClass("active");
+      localStorage.setItem("team", $(e.currentTarget).attr("team"));  	    
     });	      
   }	
   function initFomoShortTeamSelector() {
