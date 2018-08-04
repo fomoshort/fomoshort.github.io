@@ -245,14 +245,14 @@ const main = function() {
          minutes = date.getMinutes(),
          seconds = date.getSeconds(),
          dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
-         $('#fomoShortTimeLeft').text(dateString.toString())) :	
+         $('#fomoShortTimeLeft').text(dateString) :	
         (fomoQuickTimeLeft = await object.getTimeLeft(),	  
          date = new Date(Date.now()/1000 - fomoQuickTimeLeft),
          hours = date.getHours(),
          minutes = date.getMinutes(),
          seconds = date.getSeconds(),
          dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
-         $('#fomoQuickTimeLeft').text(dateString.toString()));	      
+         $('#fomoQuickTimeLeft').text(dateString);	      
     }, 1000);	    
   }
   async function initBuyButton(object) {
