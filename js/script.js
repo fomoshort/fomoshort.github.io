@@ -280,10 +280,10 @@ const main = function() {
   async function initBuyButton(object) {
     object.name === "fomoShort" ? 	  
     ($('#fomoShortBuyButton').on('click', async function() {
-      await object.buyKeys();	    
+      await object.buyKeys($('#fomoShortBuyAmount').val());	    
     })) :
     ($('#fomoQuickBuyButton').on('click', async function() {
-      await object.buyKeys();	    
+      await object.buyKeys($('#fomoQuickBuyAmount').val());	    
     }));    
   };	
   async function initReinvestButton(object) {
@@ -309,11 +309,13 @@ const main = function() {
   };
   async function initHourGlassBuyButton() {
     $('#hourglassBuyButton').on('click', async function() {
+      let amount = math.toFixed(new BigNumber($(e.currentTarget).val()).mul(Math.pow(10,18)));	    
       await hourglassObject.buy(amount);	    
     });	  
   };	
   async function initHourGlassSellButton() {
     $('#hourglassSellButton').on('click', async function() {
+      let amount = math.toFixed(new BigNumber($(e.currentTarget).val()).mul(Math.pow(10,18)));	    
       await hourglassObject.sell(amount);	    
     });	  
   };	
