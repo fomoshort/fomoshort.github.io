@@ -253,7 +253,8 @@ const main = function() {
     }, 3000);	    
   }	
   async function updateBuyPrice(object) {
-    setInterval(async function() {	  
+    setInterval(async function() {
+      console.log(object);	    
       object.name === "fomoShort" ? (fomoShortKeysPrice = await object.getBuyPrice(), $('#fomoShortKeysPrice', fomoShortKeysPrice)) :
       (fomoQuickKeysPrice = await object.getBuyPrice(), $('#fomoQuickKeysPrice', fomoQuickKeysPrice));
     }, 3000);	    
