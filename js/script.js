@@ -119,7 +119,21 @@ const gameObject = function(_gameSettings) {
 	}
       });
     });
-  }		  
+  }	
+
+  function getPlayerID(userAddress) {
+    return new Promise((resolve,reject) => {
+      let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
+      gameContract.pIDxAddr_(userAddress, function(err, result) {
+	if(!err) {
+	  resolve(result);
+	} else {
+	    reject(err);	
+	  }	
+      });	      
+    });	      
+  }	  
+	
   function getRoundInfo() {
     return new Promise((resolve, reject) => {
       let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
@@ -144,6 +158,14 @@ const gameObject = function(_gameSettings) {
       });	      
     });	    
   }
+
+  async function getVault() {
+    let userAddress = localStorage.getItem("userAddress");
+    let id = await getPlayerID(userAddress);
+    let vaults = await getPlayerVaults(id);	  
+    return vaults;
+  }
+	
   async function withdraw() {
     let userAddress = localStorage.getItem("userAddress");
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
@@ -221,7 +243,7 @@ const gameObject = function(_gameSettings) {
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
-  return {getBuyPrice, getTimeLeft, withdraw, buyKeys, registerName};  
+  return {getBuyPrice, getTimeLeft, getVault, withdraw, buyKeys, registerName};  
 };
 const main = function() {
   async function updateVault(object) {
@@ -232,8 +254,8 @@ const main = function() {
   }	
   async function updateBuyPrice(object) {
     setInterval(async function() {	  
-      object.name === "fomoShort" ? (fomoShortKeysPrice = await object.getKeysPrice(), $('#fomoShortKeysPrice', fomoShortKeysPrice)) :
-      (fomoQuickKeysPrice = await object.getKeysPrice(), $('#fomoQuickKeysPrice', fomoQuickKeysPrice));
+      object.name === "fomoShort" ? (fomoShortKeysPrice = await object.getBuyPrice(), $('#fomoShortKeysPrice', fomoShortKeysPrice)) :
+      (fomoQuickKeysPrice = await object.getBuyPrice(), $('#fomoQuickKeysPrice', fomoQuickKeysPrice));
     }, 3000);	    
   }
   async function updateTime(object) {
