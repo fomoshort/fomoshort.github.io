@@ -309,27 +309,26 @@ const main = function() {
   };
   async function initHourGlassBuyButton() {
     $('#hourglassBuyButton').on('click', async function() {
-      await hourglass.buy(amount);	    
+      await hourglassObject.buy(amount);	    
     });	  
   };	
   async function initHourGlassSellButton() {
     $('#hourglassSellButton').on('click', async function() {
-      await hourglass.sell(amount);	    
+      await hourglassObject.sell(amount);	    
     });	  
   };	
   async function initHourGlassWithdrawButton() {
     $('#hourglassWithdrawButton').on('click', async function() {
-      await hourglass.withdraw();	    
+      await hourglassObject.withdraw();	    
     });	  
   };
   async function initHourGlassReinvestButton() {
     $('#hourglassReinvestButton').on('click', async function() {
-      await hourglass.reinvest();	    
+      await hourglassObject.reinvest();	    
     });	  
   };	
   async function initFomoQuickTeamSelector() {
     $('#tab1-2 > div.teamSec > ul').on('click', function(e) {
-      console.log(e.currentTarget);	    
       $(e.currentTarget).addClass("active");  	    
     });	     
   }	
