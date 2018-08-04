@@ -259,23 +259,19 @@ const main = function() {
       (fomoQuickKeysPrice = await object.getBuyPrice(), $('#fomoQuickKeysPrice', fomoQuickKeysPrice));
     }, 3000);	    
   }
+  async function returnDateString(object) {
+    let timeLeft = await object.getTimeLeft(),	  
+    let date = new Date(Date.now()/1000 - timeLeft),
+    let hours = date.getHours(),
+    let minutes = date.getMinutes(),
+    let seconds = date.getSeconds(),
+    return dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	  
+  }	  
   async function updateTime(object) {
-    setInterval(async function() {	  
-      object.name === "fomoShort" ? 
-        (fomoShortTimeLeft = await object.getTimeLeft(),	  
-         date = new Date(Date.now()/1000 - fomoShortTimeLeft),
-         hours = date.getHours(),
-         minutes = date.getMinutes(),
-         seconds = date.getSeconds(),
-         dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
-         $('#fomoShortTimeLeft').text(dateString)) :	
-        (fomoQuickTimeLeft = await object.getTimeLeft(),	  
-         date = new Date(Date.now()/1000 - fomoQuickTimeLeft),
-         hours = date.getHours(),
-         minutes = date.getMinutes(),
-         seconds = date.getSeconds(),
-         dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString(),	    
-         $('#fomoQuickTimeLeft').text(dateString));	      
+    setInterval(async function() {
+      console.log(object);	    
+      object.name === "fomoShort" ? (dateString = await returnDateString(object), $('#fomoShortTimeLeft').text(dateString)) :	
+      (dateString = await returnDateString(object), $('#fomoQuickTimeLeft').text(dateString)); 	    
     }, 1000);	    
   }
   async function initBuyButton(object) {
