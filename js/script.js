@@ -108,10 +108,10 @@ const gameObject = function(_gameSettings) {
       });
     });
   }	  
-  function getPlayerVaults() {
+  function getPlayerVaults(id) {
     return new Promise((resolve, reject) => {
       let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
-      gameContract.getPlayerVaults.call(function(err, result) {
+      gameContract.getPlayerVaults.call(id, function(err, result) {
         if(!err) {
           resolve(result);
 	} else {
