@@ -276,8 +276,11 @@ const main = function() {
       object.name === "fomoShort" ? (fomoShortVault = await object.getVault(),
       $('#fomoShortGameEarnings').text(fomoShortVault[0]), $('#fomoShortEarnings').text(fomoShortVault[0]),
       $('#fomoShortGameWinnings').text(fomoShortVault[1]), $('#fomoShortAffiliateEarnings').text(fomoShortVault[2])) :
-      (fomoQuickVault = await object.getVault(), $('#fomoQuickGameEarnings').text(fomoQuickVault[0]),
-      $('#fomoQuickGameWinnings').text(fomoQuickVault[1]), $('#fomoQuickAffiliateEarnings').text(fomoQuickVault[2]));
+      (fomoQuickVault = await object.getVault(),
+      $('#fomoQuickGameEarnings').text(fomoQuickVault[0]),
+      $('#fomoQuickEarnings').text(fomoQuickVault[0]),  
+      $('#fomoQuickGameWinnings').text(fomoQuickVault[1]),
+      $('#fomoQuickAffiliateEarnings').text(fomoQuickVault[2])); 
     }, 3000);	    
   }	
   async function updateRoundInfo(object) {
@@ -295,8 +298,9 @@ const main = function() {
       fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID),
       $('#fomoQuickTotalInvested').text(fomoQuickRoundInfo[6]),				     
       $('#fomoQuickKeys').text(fomoQuickRoundInfo[5]),
+      $('#fomoQuickTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)), 
       $('#fomoQuickActivePot').text(fomoQuickRoundInfo[7]),
-      $('#fomoQuickEarnings').text(fomoQuickRoundInfo[8]));				     
+      $('#fomoQuickDistributedRewards').text(fomoQuickRoundInfo[8]));				     
     }, 3000);
   }	  
   async function updatePlayerInfo(object) {
