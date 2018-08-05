@@ -274,7 +274,7 @@ const main = function() {
   async function updateVault(object) {
     setInterval(async function() {
       object.name === "fomoShort" ? (fomoShortVault = await object.getVault(),
-      $('#fomoShortGameEarnings').text(fomoShortVault[0]),
+      $('#fomoShortGameEarnings').text(fomoShortVault[0]), $('#fomoShortEarnings').text(fomoShortVault[0]),
       $('#fomoShortGameWinnings').text(fomoShortVault[1]), $('#fomoShortAffiliateEarnings').text(fomoShortVault[2])) :
       (fomoQuickVault = await object.getVault(), $('#fomoQuickGameEarnings').text(fomoQuickVault[0]),
       $('#fomoQuickGameWinnings').text(fomoQuickVault[1]), $('#fomoQuickAffiliateEarnings').text(fomoQuickVault[2]));
@@ -308,9 +308,9 @@ const main = function() {
   async function updateBuyPrice(object) {
     setInterval(async function() {	    
       object.name === "fomoShort" ? (fomoShortKeysPrice = await object.getBuyPrice(), 
-      console.log(fomoShortKeysPrice), $('#fomoShortKeysPrice').text(fomoShortKeysPrice/1e18)) :
+      $('#fomoShortKeysPrice').text(fomoShortKeysPrice/1e18)) :
       (fomoQuickKeysPrice = await object.getBuyPrice(),
-      console.log(fomoQuickKeysPrice), $('#fomoQuickKeysPrice').text(fomoQuickKeysPrice/1e18));
+      $('#fomoQuickKeysPrice').text(fomoQuickKeysPrice/1e18));
     }, 3000);	    
   }
   async function returnDateString(object) {
@@ -323,7 +323,6 @@ const main = function() {
   }	  
   async function updateTime(object) {
     setInterval(async function() {
-      console.log(object);	    
       object.name === "fomoShort" ? (dateString = await returnDateString(object), $('#fomoShortTimeLeft').text(dateString)) :	
       (dateString = await returnDateString(object), $('#fomoQuickTimeLeft').text(dateString)); 	    
     }, 1000);	    
