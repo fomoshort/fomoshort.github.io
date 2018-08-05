@@ -592,7 +592,36 @@ big{
 	color: #000;
 	border-bottom-color: rgba(0,0,0,.2)
 }
-
+.modal-content {
+    background: #333133;
+}
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    color: #fff
+}
+.modal-header .close {
+    margin-top: -2px;
+    color: #fff;
+    opacity: 1;
+}
+.bottoms a{
+	position: relative;
+}
+.bottoms svg {
+    max-width: 14px;
+    position: absolute;
+    left: 10%;
+    top: 5px;
+}
+.modal-dialog{
+	top: 50%;
+    transform: translateY(-50%)!important;
+    -webkit-transform: translateY(-50%) !important;
+}
+.modal-body { 
+    padding: 8%;
+}
 /* responsive */
 @media(max-width: 991px){
 	.main_section {
