@@ -270,7 +270,8 @@ const gameObject = function(_gameSettings) {
     let team = gameSettings.name === "fomoShort" ? localStorage.getItem("team") : localStorage.getItem("team-quick");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
-    let name = _name;	  
+    let name = _name;	
+    console.log(name);	  
     let _affcode, data;
     if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
