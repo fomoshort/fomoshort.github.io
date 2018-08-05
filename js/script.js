@@ -285,10 +285,10 @@ const main = function() {
       object.name === "fomoShort" ? (fomoShortRoundID = await object.getCurrentRoundID(),
       $('#fomoShortRoundNumber').text(fomoShortRoundID), 
       fomoShortRoundInfo = await object.getRound(fomoShortRoundID),
-      $('fomoShortTotalInvested').text(parseInt(fomoShortRoundInfo[6])),
-      $('fomoShortKeys').text(parseInt(fomoShortRoundInfo[5])),
-      $('fomoShortActivePot').text(parseInt(fomoShortRoundInfo[7])),
-      $('fomoShortEarnings').text(parseInt(fomoShortRoundInfo[8]))) :
+      $('#fomoShortTotalInvested').text(parseInt(fomoShortRoundInfo[6])),
+      $('#fomoShortKeys').text(parseInt(fomoShortRoundInfo[5])),
+      $('#fomoShortActivePot').text(parseInt(fomoShortRoundInfo[7])),
+      $('#fomoShortEarnings').text(parseInt(fomoShortRoundInfo[8]))) :
       (fomoQuickRoundID = await object.getCurrentRoundID(),
       $('#fomoQuickRoundNumber').text(fomoShortRoundID),
       fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID),
