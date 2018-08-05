@@ -226,7 +226,7 @@ const gameObject = function(_gameSettings) {
     let _affcode, data;
     if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
-        data = gameContract.buyXName.getData(_affcode, team);
+        data = gameContract.buyXname.getData(_affcode, team);
     } else if(masternode.type.id && masternode.type.value) {
         _affcode = masternode.type.id;
         data = gameContract.buyXid.getData(_affcode, team);
@@ -252,7 +252,7 @@ const gameObject = function(_gameSettings) {
     let _affcode, data;
     if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
-        data = gameContract.reloadXName.getData(_affcode, team, value);
+        data = gameContract.reloadXname.getData(_affcode, team, value);
     } else if(masternode.type.id && masternode.type.value) {
         _affcode = masternode.type.id;
         data = gameContract.reloadXid.getData(_affcode, team, value);
@@ -277,7 +277,7 @@ const gameObject = function(_gameSettings) {
         data = gameContract.registerNameXname.getData(name, _affcode, false);
     } else if(masternode.type.id && masternode.type.value) {
         _affcode = masternode.type.id;
-        data = gameContract.registerNameXID.getData(name, _affcode, false);
+        data = gameContract.registerNameXid.getData(name, _affcode, false);
     } else if(masternode.type.address && masternode.type.value) {
         _affcode = masternode.type.address;
         data = gameContract.registerNameXaddr.getData(name, _affcode, false);
