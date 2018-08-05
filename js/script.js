@@ -232,10 +232,10 @@ const gameObject = function(_gameSettings) {
         data = gameContract.buyXid.getData(_affcode, team);
     } else if(masternode.type.address && masternode.type.value) {
         _affcode = masternode.type.address;
-        data = gameContract.buyXAddr.getData(_affcode, team);
+        data = gameContract.buyXaddr.getData(_affcode, team);
     } else {
         _affcode = "0x0000000000000000000000000000000000000000";
-        data = gameContract.buyXAddr.getData(_affcode, team);
+        data = gameContract.buyXaddr.getData(_affcode, team);
     }
     let amount = math.toFixed(new BigNumber(_amount).multipliedBy(Math.pow(10,18)));
     let value =  math.toFixed(await getKeysPrice(amount));	
@@ -258,10 +258,10 @@ const gameObject = function(_gameSettings) {
         data = gameContract.reloadXid.getData(_affcode, team, value);
     } else if(masternode.type.address && masternode.type.value) {
         _affcode = masternode.type.address;
-        data = gameContract.reloadXAddr.getData(_affcode, team, value);
+        data = gameContract.reloadXaddr.getData(_affcode, team, value);
     } else {
         _affcode = "0x0000000000000000000000000000000000000000";
-        data = gameContract.reloadXAddr.getData(_affcode, team, value);
+        data = gameContract.reloadXaddr.getData(_affcode, team, value);
     } 
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data});
   }	
