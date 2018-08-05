@@ -406,6 +406,14 @@ const main = function() {
       localStorage.setItem("team", $(e.currentTarget).attr("team"));  	    
     });	     
   }	
+  function initTeamQuickHighlighter() {
+      let teamNumber = localStorage.getItem("team-quick");	    
+      $("li[team-quick='" + teamNumber + "']").addClass("active");
+  }	
+  function initTeamShortHighlighter() {
+      let teamNumber = localStorage.getItem("team");	    
+      $("li[team='" + teamNumber + "']").addClass("active");
+  }	  
   function initFomoQuickBuyAmountIncrementor() {
     $('#fomoQuickButtons > ul > li').on('click', function(e) {   
       $('#fomoQuickBuyAmount').val(parseInt($('#fomoQuickBuyAmount').val()) + parseInt($(e.currentTarget).children('a').attr('value')));
