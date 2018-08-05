@@ -244,7 +244,6 @@ li.effect_yellow p{
 	filter: drop-shadow(0 0 1px rgba(186,244,22,.7)) drop-shadow(0 0 15px rgba(186,244,22,.7)) drop-shadow(0 0 7px rgba(186,244,22,.7));
 }
 .tabArea{
-	margin-top: 60px;
 	display: flex;
 	margin-bottom: 60px;
 }
