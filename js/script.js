@@ -465,7 +465,6 @@ const main = function() {
     await updateHourGlassInfo();	  
     await updateHourGlassBuyPrice();
     await updateHourGlassSellPrice(); 
-    await initSingleBuyButton();	  
     await initHourGlassBuyButton();
     await initHourGlassSellButton();
     await initHourGlassWithdrawButton();	  
@@ -477,6 +476,7 @@ const main = function() {
     await updateVault(object);	  
     await updateBuyPrice(object);
     await updateTime(object);	 
+    await initSingleBuyButton(object);	  
     await initBuyButton(object);
     await initReinvestButton(object);	  
     await initWithdrawButton(object);	  
