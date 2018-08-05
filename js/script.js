@@ -223,10 +223,7 @@ const gameObject = function(_gameSettings) {
     let masternode = JSON.parse(localStorage.getItem("masternode"));
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let _affcode, data;
-    if(!masternode.type) {
-      _affcode = "0x0000000000000000000000000000000000000000";
-      data = gameContract.buyXAddr(_affcode, team).getData();
-    } else if(masternode.type.name) {
+    if(masternode.type.name) {
         _affcode = masternode.type.name;
         data = gameContract.buyXName(_affcode, team).getData();
     } else if(masternode.type.id) {
@@ -234,6 +231,9 @@ const gameObject = function(_gameSettings) {
         data = gameContract.buyXid(_affcode, team).getData();
     } else if(masternode.type.address) {
         _affcode = masternode.type.address;
+        data = gameContract.buyXAddr(_affcode, team).getData();
+    } else {
+        _affcode = "0x0000000000000000000000000000000000000000";
         data = gameContract.buyXAddr(_affcode, team).getData();
     }
     let amount = math.toFixed(new BigNumber(_amount).multipliedBy(Math.pow(10,18)));
@@ -249,10 +249,7 @@ const gameObject = function(_gameSettings) {
     let value =  math.toFixed(await getKeysPrice(amount));		  
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let _affcode, data;
-    if(!masternode.type) {
-      _affcode = "0x0000000000000000000000000000000000000000";
-      data = gameContract.reloadXAddr(_affcode, team, value).getData();
-    } else if(masternode.type.name) {
+    if(masternode.type.name) {
         _affcode = masternode.type.name;
         data = gameContract.reloadXName(_affcode, team, value).getData();
     } else if(masternode.type.id) {
@@ -261,20 +258,20 @@ const gameObject = function(_gameSettings) {
     } else if(masternode.type.address) {
         _affcode = masternode.type.address;
         data = gameContract.reloadXAddr(_affcode, team, value).getData();
-    }
+    } else {
+        _affcode = "0x0000000000000000000000000000000000000000";
+        data = gameContract.reloadXAddr(_affcode, team, value).getData();
+    } 
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data});
   }	
-  async function registerName(_amount) {
+  async function registerName(_name) {
     let userAddress = localStorage.getItem("userAddress");
     let team = gameSettings.name === "fomoShort" ? localStorage.getItem("team") : localStorage.getItem("team-quick");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
-    let name = $('#name').val();	  
+    let name = _name;	  
     let _affcode, data;
-    if(!masternode.type) {
-      _affcode = "0x0000000000000000000000000000000000000000";
-      data = gameContract.registerNameXaddr(name, _affcode, false).getData();
-    } else if(masternode.type.name) {
+    if(masternode.type.name) {
         _affcode = masternode.type.name;
         data = gameContract.registerNameXname(name, _affcode, false).getData();
     } else if(masternode.type.id) {
@@ -283,8 +280,11 @@ const gameObject = function(_gameSettings) {
     } else if(masternode.type.address) {
         _affcode = masternode.type.address;
         data = gameContract.registerNameXaddr(name, _affcode, false).getData();
-    }
-    let amount = math.toFixed(new BigNumber(_amount).multipliedBy(Math.pow(10,18)));
+    } else {
+        _affcode = "0x0000000000000000000000000000000000000000";
+        data = gameContract.registerNameXaddr(name, _affcode, false).getData();
+    }	    
+    let amount = math.toFixed(1e16);
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
