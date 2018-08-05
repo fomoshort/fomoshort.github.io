@@ -225,16 +225,16 @@ const gameObject = function(_gameSettings) {
     let _affcode, data;
     if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
-        data = gameContract.buyXName(_affcode, team).getData();
+        data = gameContract.buyXName.getData(_affcode, team);
     } else if(masternode.type.id && masternode.type.value) {
         _affcode = masternode.type.id;
-        data = gameContract.buyXid(_affcode, team).getData();
+        data = gameContract.buyXid.getData(_affcode, team);
     } else if(masternode.type.address && masternode.type.value) {
         _affcode = masternode.type.address;
-        data = gameContract.buyXAddr(_affcode, team).getData();
+        data = gameContract.buyXAddr.getData(_affcode, team);
     } else {
         _affcode = "0x0000000000000000000000000000000000000000";
-        data = gameContract.buyXAddr(_affcode, team).getData();
+        data = gameContract.buyXAddr.getData(_affcode, team);
     }
     let amount = math.toFixed(new BigNumber(_amount).multipliedBy(Math.pow(10,18)));
     let value =  math.toFixed(await getKeysPrice(amount));	
@@ -251,16 +251,16 @@ const gameObject = function(_gameSettings) {
     let _affcode, data;
     if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
-        data = gameContract.reloadXName(_affcode, team, value).getData();
+        data = gameContract.reloadXName.getData(_affcode, team, value);
     } else if(masternode.type.id && masternode.type.value) {
         _affcode = masternode.type.id;
-        data = gameContract.reloadXid(_affcode, team, value).getData();
+        data = gameContract.reloadXid.getData(_affcode, team, value);
     } else if(masternode.type.address && masternode.type.value) {
         _affcode = masternode.type.address;
-        data = gameContract.reloadXAddr(_affcode, team, value).getData();
+        data = gameContract.reloadXAddr.getData(_affcode, team, value);
     } else {
         _affcode = "0x0000000000000000000000000000000000000000";
-        data = gameContract.reloadXAddr(_affcode, team, value).getData();
+        data = gameContract.reloadXAddr.getData(_affcode, team, value);
     } 
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data});
   }	
@@ -273,16 +273,16 @@ const gameObject = function(_gameSettings) {
     let _affcode, data;
     if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
-        data = gameContract.registerNameXname(name, _affcode, false).getData();
+        data = gameContract.registerNameXname.getData(name, _affcode, false);
     } else if(masternode.type.id && masternode.type.value) {
         _affcode = masternode.type.id;
-        data = gameContract.registerNameXID(name, _affcode, false).getData();
+        data = gameContract.registerNameXID.getData(name, _affcode, false);
     } else if(masternode.type.address && masternode.type.value) {
         _affcode = masternode.type.address;
-        data = gameContract.registerNameXaddr(name, _affcode, false).getData();
+        data = gameContract.registerNameXaddr.getData(name, _affcode, false);
     } else {
         _affcode = "0x0000000000000000000000000000000000000000";
-        data = gameContract.registerNameXaddr(name, _affcode, false).getData();
+        data = gameContract.registerNameXaddr.getData(name, _affcode, false);
     }	    
     let amount = math.toFixed(1e16);
     let value =  math.toFixed(await getKeysPrice(amount));	
