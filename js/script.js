@@ -394,8 +394,8 @@ const main = function() {
   };	
   function initFomoQuickTeamSelector() {
     $('#tab1-2 > div.teamSec > ul > li').on('click', function(e) {
-      $('.active').removeClass("active");    	      
-      $(e.currentTarget).addClass("active");
+      $('.active2').removeClass("active2");    	      
+      $(e.currentTarget).addClass("active2");
       localStorage.setItem("team-quick", $(e.currentTarget).attr("team"));  	    
     });	      
   }	
