@@ -291,7 +291,7 @@ const main = function() {
       $('#fomoShortActivePot').text(parseInt(fomoShortRoundInfo[7])),
       $('#fomoShortDistributedRewards').text(parseInt(fomoShortRoundInfo[8]))) :
       (fomoQuickRoundID = await object.getCurrentRoundID(),
-      $('#fomoQuickRoundNumber').text(fomoShortRoundID),
+      $('#fomoQuickRoundNumber').text(fomoQuickRoundID),
       fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID),
       $('#fomoQuickTotalInvested').text(fomoQuickRoundInfo[6]),				     
       $('#fomoQuickKeys').text(fomoQuickRoundInfo[5]),
