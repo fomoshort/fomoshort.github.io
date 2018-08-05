@@ -237,7 +237,7 @@ const gameObject = function(_gameSettings) {
         _affcode = "0x0000000000000000000000000000000000000000";
         data = gameContract.buyXaddr.getData(_affcode, team);
     }
-    let amount = math.toFixed(new BigNumber(_amount).multipliedBy(Math.pow(10,18)));
+    let amount = math.toFixed(_amount);
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});
   }
@@ -285,8 +285,7 @@ const gameObject = function(_gameSettings) {
         _affcode = "0x0000000000000000000000000000000000000000";
         data = gameContract.registerNameXaddr.getData(name, _affcode, false);
     }	    
-    let amount = math.toFixed(1e16);
-    let value =  math.toFixed(await getKeysPrice(amount));	
+    let value = math.toFixed(1e16);	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
   return {getBuyPrice, getTimeLeft, getRound, getPlayerInfo, getCurrentRoundID, getVault, withdraw, buyKeys, reinvestBuy, registerName};  
