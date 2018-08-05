@@ -349,8 +349,9 @@ const main = function() {
   }	  
   async function updateTime(object) {
     setInterval(async function() {
-      object.name === "fomoShort" ? (dateString = await returnDateString(object), $('#fomoShortTimeLeft').text(dateString)) :	
-      (dateString = await returnDateString(object), $('#fomoQuickTimeLeft').text(dateString)); 	    
+      object.name === "fomoShort" ? (dateString = await returnDateString(object), $('#fomoShortTimeLeft').text(dateString),
+      $('#hms_timer2').text(dateString)) :	
+      (dateString = await returnDateString(object), $('#fomoQuickTimeLeft').text(dateString), $('#hms_timer2').text(dateString)); 	    
     }, 1000);	    
   }
   async function initSingleBuyButton(object) {
@@ -460,6 +461,11 @@ const main = function() {
     $('#fomoShortButtons > ul > li').on('click', function(e) {    	      
       $('#fomoShortBuyAmount').val(parseInt($('#fomoShortBuyAmount').val()) + parseInt($(e.currentTarget).children('a').attr('value')));
     });	     
+  }		
+  async function initRegisterNameButton(object) {
+    $('#myModal > div > div > div.modal-body > div.bottoms > a').on('click', async function() {
+      await object.registerName($('#myModal > div > div > div.modal-body > div.input-group.custom_group > input').val());	   
+    });	    
   }	
   async function initHourGlass() {
     await updateHourGlassInfo();	  
@@ -476,6 +482,7 @@ const main = function() {
     await updateVault(object);	  
     await updateBuyPrice(object);
     await updateTime(object);	 
+    await initRegisterNameButton(object);
     await initSingleBuyButton(object);	  
     await initBuyButton(object);
     await initReinvestButton(object);	  
