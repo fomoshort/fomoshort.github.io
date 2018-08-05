@@ -400,14 +400,12 @@ const main = function() {
   };
   async function initHourGlassBuyButton() {
     $('#hourglassBuyButton').on('click', async function() {
-      let amount = math.toFixed(new BigNumber($(e.currentTarget).val()).multipliedBy(Math.pow(10,18)));	    
-      await hourglassObject.buy(amount);	    
+      await hourglassObject.buyTokens($('#buy_p3d > div.input-group.custom_group > input').val());	    
     });	  
   };	
   async function initHourGlassSellButton() {
     $('#hourglassSellButton').on('click', async function() {
-      let amount = math.toFixed(new BigNumber($(e.currentTarget).val()).multipliedBy(Math.pow(10,18)));	    
-      await hourglassObject.sell(amount);	    
+      await hourglassObject.sellTokens($('#sell_p3d > div.input-group.custom_group > input').val());	    
     });	  
   };	
   async function initHourGlassWithdrawButton() {
@@ -416,7 +414,7 @@ const main = function() {
     });	  
   };
   async function initHourGlassReinvestButton() {
-    $('#hourglassReinvestButton').on('click', async function() {
+    $('#hourglassReinvest').on('click', async function() {
       await hourglassObject.reinvest();	    
     });	  
   };	
