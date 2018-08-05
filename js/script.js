@@ -222,7 +222,6 @@ const gameObject = function(_gameSettings) {
     let team = gameSettings.name === "fomoShort" ? localStorage.getItem("team") : localStorage.getItem("team-quick");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
-    console.log(gameContract);	  
     let _affcode, data;
     if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
@@ -238,7 +237,8 @@ const gameObject = function(_gameSettings) {
         data = gameContract.buyXaddr.getData(_affcode, team);
     }
     let amount = math.toFixed(_amount);
-    let value =  math.toFixed(await getKeysPrice(amount));	
+    let value =  math.toFixed(parseFloat(await getKeysPrice(amount)));	
+    console.log(amount, value);
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});
   }
   async function reinvestBuy(_amount) {
