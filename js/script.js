@@ -396,7 +396,7 @@ const main = function() {
     $('#tab1-2 > div.teamSec > ul > li').on('click', function(e) {
       $('.active2').removeClass("active2");    	      
       $(e.currentTarget).addClass("active2");
-      localStorage.setItem("team-quick", $(e.currentTarget).attr("team"));  	    
+      localStorage.setItem("team-quick", $(e.currentTarget).attr("team-quick"));  	    
     });	      
   }	
   function initFomoShortTeamSelector() {
