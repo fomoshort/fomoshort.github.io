@@ -223,13 +223,13 @@ const gameObject = function(_gameSettings) {
     let masternode = JSON.parse(localStorage.getItem("masternode"));
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let _affcode, data;
-    if(masternode.type.name) {
+    if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
         data = gameContract.buyXName(_affcode, team).getData();
-    } else if(masternode.type.id) {
+    } else if(masternode.type.id && masternode.type.value) {
         _affcode = masternode.type.id;
         data = gameContract.buyXid(_affcode, team).getData();
-    } else if(masternode.type.address) {
+    } else if(masternode.type.address && masternode.type.value) {
         _affcode = masternode.type.address;
         data = gameContract.buyXAddr(_affcode, team).getData();
     } else {
@@ -249,13 +249,13 @@ const gameObject = function(_gameSettings) {
     let value =  math.toFixed(await getKeysPrice(amount));		  
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let _affcode, data;
-    if(masternode.type.name) {
+    if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
         data = gameContract.reloadXName(_affcode, team, value).getData();
-    } else if(masternode.type.id) {
+    } else if(masternode.type.id && masternode.type.value) {
         _affcode = masternode.type.id;
         data = gameContract.reloadXid(_affcode, team, value).getData();
-    } else if(masternode.type.address) {
+    } else if(masternode.type.address && masternode.type.value) {
         _affcode = masternode.type.address;
         data = gameContract.reloadXAddr(_affcode, team, value).getData();
     } else {
@@ -271,13 +271,13 @@ const gameObject = function(_gameSettings) {
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let name = _name;	  
     let _affcode, data;
-    if(masternode.type.name) {
+    if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
         data = gameContract.registerNameXname(name, _affcode, false).getData();
-    } else if(masternode.type.id) {
+    } else if(masternode.type.id && masternode.type.value) {
         _affcode = masternode.type.id;
         data = gameContract.registerNameXID(name, _affcode, false).getData();
-    } else if(masternode.type.address) {
+    } else if(masternode.type.address && masternode.type.value) {
         _affcode = masternode.type.address;
         data = gameContract.registerNameXaddr(name, _affcode, false).getData();
     } else {
