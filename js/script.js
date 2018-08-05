@@ -146,6 +146,18 @@ const gameObject = function(_gameSettings) {
       });
     });
   }	
+  function getCurrentRoundID() {
+    return new Promise((resolve, reject) => {
+      let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
+      gameContract.rID_(function(err, result) {
+        if(!err) {
+          resolve(result);
+	} else {
+	    reject(err);
+	}
+      });
+    });
+  }		
   function getPlayerInfo() {
     return new Promise((resolve, reject) => {
       let userAddress = localStorage.getItem("userAddress");	    
@@ -256,7 +268,7 @@ const gameObject = function(_gameSettings) {
     let value =  math.toFixed(await getKeysPrice(amount));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
-  return {getBuyPrice, getTimeLeft, getRound, getPlayerInfo, getVault, withdraw, buyKeys, reinvestBuy, registerName};  
+  return {getBuyPrice, getTimeLeft, getRound, getPlayerInfo, getCurrentRoundID, getVault, withdraw, buyKeys, reinvestBuy, registerName};  
 };
 const main = function() {
   async function updateVault(object) {
