@@ -199,7 +199,7 @@ const gameObject = function(_gameSettings) {
   }
   async function buyKeys(_amount) {
     let userAddress = localStorage.getItem("userAddress");
-    let team = localStorage.getItem("team");
+    let team = gameSettings.name === "fomoShort" ? localStorage.getItem("team") : localStorage.getItem("team-quick");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let _affcode, data;
@@ -222,7 +222,7 @@ const gameObject = function(_gameSettings) {
   }
   async function reinvestBuy(_amount) {
     let userAddress = localStorage.getItem("userAddress");
-    let team = localStorage.getItem("team");
+    let team = gameSettings.name === "fomoShort" ? localStorage.getItem("team") : localStorage.getItem("team-quick");
     let keyPrice = localStorage.getItem("keyPrice");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
     let amount = math.toFixed(new BigNumber(_amount).multipliedBy(Math.pow(10,18)));
@@ -246,7 +246,7 @@ const gameObject = function(_gameSettings) {
   }	
   async function registerName(_amount) {
     let userAddress = localStorage.getItem("userAddress");
-    let team = localStorage.getItem("team");
+    let team = gameSettings.name === "fomoShort" ? localStorage.getItem("team") : localStorage.getItem("team-quick");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let name = $('#name').val();	  
