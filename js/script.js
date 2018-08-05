@@ -134,10 +134,10 @@ const gameObject = function(_gameSettings) {
     });	      
   }	  
 	
-  function getRound() {
+  function getRound(id) {
     return new Promise((resolve, reject) => {
       let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
-      gameContract.getRound(function(err, result) {
+      gameContract.round_(id, function(err, result) {
         if(!err) {
           resolve(result);
 	} else {
