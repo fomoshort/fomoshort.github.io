@@ -270,13 +270,13 @@ const main = function() {
   }	
   async function updateRoundInfo(object) {
     setInterval(async function() {
-      object.name === "fomoShort" ? (fomoShortRoundID = await object.getCurrentRoundID(), 
-      fomoShortRoundInfo = await object.getRound(fomoShortRoundID), $('fomoShortAmountInvested').text(fomoShortRoundInfo[6]),				     
-      $('fomoShortKeys').text(fomoShortRoundInfo[5]), $('fomoShortPot').text(fomoShortRoundInfo[7]),
-      $('fomoShortEarnings').text(fomoShortRoundInfo[8])) :
-      (fomoQuickRoundID = await object.getCurrentRoundID(), 
-      fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID), $('fomoQuickAmountInvested').text(fomoQuickRoundInfo[6]),				     
-      $('fomoQuickKeys').text(fomoQuickRoundInfo[5]), $('fomoQuickPot').text(fomoQuickRoundInfo[7]),
+      object.name === "fomoShort" ? (fomoShortRoundID = await object.getCurrentRoundID(),
+      $('#fomoShortRoundNumber').text(fomoShortRoundID), fomoShortRoundInfo = await object.getRound(fomoShortRoundID),
+      $('fomoShortTotalInvested').text(fomoShortRoundInfo[6]), $('fomoShortKeys').text(fomoShortRoundInfo[5]),
+      $('fomoShortActivePot').text(fomoShortRoundInfo[7]), $('fomoShortEarnings').text(fomoShortRoundInfo[8])) :
+      (fomoQuickRoundID = await object.getCurrentRoundID(), $('#fomoQuickRoundNumber').text(fomoShortRoundID),
+      fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID), $('fomoQuickTotalInvested').text(fomoQuickRoundInfo[6]),				     
+      $('fomoQuickKeys').text(fomoQuickRoundInfo[5]), $('fomoQuickActivePot').text(fomoQuickRoundInfo[7]),
       $('fomoQuickEarnings').text(fomoQuickRoundInfo[8]));				     
     }, 3000);
   }	  
