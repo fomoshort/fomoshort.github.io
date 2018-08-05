@@ -312,6 +312,7 @@ const main = function() {
       $('#fomoShortKeys').text(parseInt(fomoShortRoundInfo[5])),
       $('#fomoShortTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)),			     
       $('#fomoShortActivePot').text(parseInt(fomoShortRoundInfo[7])),
+      $('#fomoShortVolume').text(parseInt(fomoShortRoundInfo[7])),
       $('#fomoShortDistributedRewards').text(parseInt(fomoShortRoundInfo[8]))) :
       (fomoQuickRoundID = await object.getCurrentRoundID(),
       $('#fomoQuickRoundNumber').text(fomoQuickRoundID),
@@ -320,6 +321,7 @@ const main = function() {
       $('#fomoQuickKeys').text(fomoQuickRoundInfo[5]),
       $('#fomoQuickTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)), 
       $('#fomoQuickActivePot').text(fomoQuickRoundInfo[7]),
+      $('#fomoQuickVolume').text(fomoQuickRoundInfo[7]),
       $('#fomoQuickDistributedRewards').text(fomoQuickRoundInfo[8]));				     
     }, 3000);
   }	  
@@ -351,6 +353,15 @@ const main = function() {
       (dateString = await returnDateString(object), $('#fomoQuickTimeLeft').text(dateString)); 	    
     }, 1000);	    
   }
+  async function initSingleBuyButton(object) {
+    object.name === "fomoShort" ? 	  
+    ($('#fomoShortSingleBuyButton').on('click', async function() {
+      await object.buyKeys(1);	    
+    })) :
+    ($('#fomoQuickSingleBuyButton').on('click', async function() {
+      await object.buyKeys(1);	    
+    }));    
+  };		
   async function initBuyButton(object) {
     object.name === "fomoShort" ? 	  
     ($('#fomoShortBuyButton').on('click', async function() {
@@ -453,7 +464,8 @@ const main = function() {
   async function initHourGlass() {
     await updateHourGlassInfo();	  
     await updateHourGlassBuyPrice();
-    await updateHourGlassSellPrice(); 	  
+    await updateHourGlassSellPrice(); 
+    await initSingleBuyButton();	  
     await initHourGlassBuyButton();
     await initHourGlassSellButton();
     await initHourGlassWithdrawButton();	  
