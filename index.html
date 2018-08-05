@@ -12,6 +12,48 @@
 
   </head>
   <body>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Graffiti your name on the Blockchain</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group custom_group">
+          <span class="input-group-addon">Random</span>
+          <input type="text" value="129" class="form-control" aria-label="Amount (to the nearest dollar)">
+          <!-- <span class="input-group-addon">@ 0.00967629 ETH</span> -->
+        </div>
+        <p class="small" style="color: #fff">
+        <br>
+        Names must follow these rules:<br>
+        -Must be unique <i>[<a style="color:#00c9ed" href="https://fomo3d.eu/">database of unique names</a>]</i><br>
+        -32 Characters or Less<br>
+        -A-Z (lowercase)<br>
+        -Name cannot be <i>just</i> numbers, but numbers are allowed<br>
+        -No special characters<br>
+        -No more than one space between characters<br>
+        <br>
+        If the transaction fails, one of these criteria was not met properly. <br>
+        <br>
+        Names are yours permanently (for vanity URLS). But only your most recent name will show up on the leaderboard/game UI. You can own as many names as you'd like.<br><br>
+
+        Make it good.
+
+        </p>
+        <div class="bottoms">
+          <a href="#" class="btn btn-primary big-btn"> <svg class="svg-inline--fa fa-ethereum fa-w-10" aria-hidden="true" data-prefix="fab" data-icon="ethereum" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"></path></svg><!-- <i class="fab fa-ethereum"></i> --> <span>Purchase for 0.01 ETH </span></a>
+          <p style="font-size: 12px; color: #afafaf; margin-top: 15px; text-align: center;"> The fee is distributed across community members who made this game possible.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
 
     <header>
       <div class="container">
@@ -69,7 +111,7 @@
                          </label>
                     </div>
                 </li>
-                <li><a href="#" class="btn btn-default register_btn">Register a name</a></li>
+                <li><a href="#" class="btn btn-default register_btn" data-toggle="modal" data-target="#myModal">Register a name</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
