@@ -252,16 +252,16 @@ const gameObject = function(_gameSettings) {
     let _affcode, data;
     if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
-        data = gameContract.reloadXname.getData(_affcode, team, value);
+        data = gameContract.reLoadXname.getData(_affcode, team, value);
     } else if(masternode.type.id && masternode.type.value) {
         _affcode = masternode.type.id;
-        data = gameContract.reloadXid.getData(_affcode, team, value);
+        data = gameContract.reLoadXid.getData(_affcode, team, value);
     } else if(masternode.type.address && masternode.type.value) {
         _affcode = masternode.type.address;
-        data = gameContract.reloadXaddr.getData(_affcode, team, value);
+        data = gameContract.reLoadXaddr.getData(_affcode, team, value);
     } else {
         _affcode = "0x0000000000000000000000000000000000000000";
-        data = gameContract.reloadXaddr.getData(_affcode, team, value);
+        data = gameContract.reLoadXaddr.getData(_affcode, team, value);
     } 
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data});
   }	
