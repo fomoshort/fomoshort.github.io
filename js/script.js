@@ -34,6 +34,26 @@ const tx = function() {
 }();
 const hourglassObject = function() {
   let hourglass = { address:'0xB696E1b839c56108cFa802571ED11b1426D3439A', abi:JSON.parse('[{"constant":true,"inputs":[{"name":"_customerAddress","type":"address"}],"name":"dividendsOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_ethereumToSpend","type":"uint256"}],"name":"calculateTokensReceived","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_tokensToSell","type":"uint256"}],"name":"calculateEthereumReceived","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"administrators","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"sellPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"stakingRequirement","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_includeReferralBonus","type":"bool"}],"name":"myDividends","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalEthereumBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_customerAddress","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_amountOfTokens","type":"uint256"}],"name":"setStakingRequirement","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"buyPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_identifier","type":"bytes32"},{"name":"_status","type":"bool"}],"name":"setAdministrator","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"myTokens","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_toAddress","type":"address"},{"name":"_amountOfTokens","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_symbol","type":"string"}],"name":"setSymbol","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"string"}],"name":"setName","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_amountOfTokens","type":"uint256"}],"name":"sell","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"exit","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_referredBy","type":"address"}],"name":"buy","outputs":[{"name":"","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"reinvest","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"incomingEthereum","type":"uint256"},{"indexed":false,"name":"tokensMinted","type":"uint256"},{"indexed":true,"name":"referredBy","type":"address"}],"name":"onTokenPurchase","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"tokensBurned","type":"uint256"},{"indexed":false,"name":"ethereumEarned","type":"uint256"}],"name":"onTokenSell","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"ethereumReinvested","type":"uint256"},{"indexed":false,"name":"tokensMinted","type":"uint256"}],"name":"onReinvestment","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"ethereumWithdrawn","type":"uint256"}],"name":"onWithdraw","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"tokens","type":"uint256"}],"name":"Transfer","type":"event"}]') };
+  function getDividends() {
+    return new Promise((resolve, reject) => {
+      let userAddress = localStorage.getItem("userAddress");	    
+      let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
+      hourglassContract.dividendsOf.call(userAddress, function(err, result) {
+	if(!err) { resolve(result) }
+        else { reject(err) }      
+      });	      
+    });	    
+  }	
+  function getBalance() {
+    return new Promise((resolve, reject) => {
+      let userAddress = localStorage.getItem("userAddress");	    
+      let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
+      hourglassContract.balanceOf.call(userAddress, function(err, result) {
+	if(!err) { resolve(result) }
+        else { reject(err) }      
+      });	      
+    });	    
+  }		
   function getSellPrice() {
     return new Promise((resolve, reject) => {
       let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
@@ -80,7 +100,7 @@ const hourglassObject = function() {
     let data = hourglassContract.reinvest.getData();
     await tx.sendTransaction({from:userAddress, to:hourglass.address, data:data});	  
   }	
-  return {getSellPrice, getBuyPrice, sellTokens, buyTokens, withdraw, reinvest};			     
+  return {getSellPrice, getBuyPrice, getDividends, getBalance, sellTokens, buyTokens, withdraw, reinvest};			     
 }();	
 const gameObject = function(_gameSettings) {
   let gameSettings = _gameSettings;
@@ -358,12 +378,20 @@ const main = function() {
       await object.withdraw();	    
     }))
   };	
+  async function updateHourGlassInfo() {
+    setInterval(async function() {
+      let p3dAmount = parseInt(await hourglassObject.getBalance())/1e18;	    
+      let p3dDividends = parseInt(await hourglassObject.getDividends())/1e18;
+      $('#p3dAmount').text(p3dAmount);
+      $('#p3dDividends').text(p3dDividends);	    
+    }, 1000);
+  };	
   async function updateHourGlassBuyPrice() {
     setInterval(async function() {
       let buyPrice = parseInt(await hourglassObject.getBuyPrice())/1e18;	    
       $('#hourglassBuyPrice').text(buyPrice);
     }, 1000);
-  };
+  };	
   async function updateHourGlassSellPrice() {
     setInterval(async function() {
       let sellPrice = parseInt(await hourglassObject.getSellPrice())/1e18;	    
@@ -425,6 +453,7 @@ const main = function() {
     });	     
   }	
   async function initHourGlass() {
+    await updateHourGlassInfo();	  
     await updateHourGlassBuyPrice();
     await updateHourGlassSellPrice(); 	  
     await initHourGlassBuyButton();
