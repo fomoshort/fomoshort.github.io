@@ -411,6 +411,7 @@ const main = function() {
     await initHourGlassReinvestButton();	  
   }	
   async function initGame(object) {
+    await updateRoundInfo(object);	  
     await updatePlayerInfo(object);	  
     await updateVault(object);	  
     await updateBuyPrice(object);
