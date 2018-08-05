@@ -287,15 +287,16 @@ const main = function() {
       fomoShortRoundInfo = await object.getRound(fomoShortRoundID),
       $('#fomoShortTotalInvested').text(parseInt(fomoShortRoundInfo[6])),
       $('#fomoShortKeys').text(parseInt(fomoShortRoundInfo[5])),
+      $('#fomoShortTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)),			     
       $('#fomoShortActivePot').text(parseInt(fomoShortRoundInfo[7])),
-      $('#fomoShortEarnings').text(parseInt(fomoShortRoundInfo[8]))) :
+      $('#fomoShortDistributedRewards').text(parseInt(fomoShortRoundInfo[8]))) :
       (fomoQuickRoundID = await object.getCurrentRoundID(),
       $('#fomoQuickRoundNumber').text(fomoShortRoundID),
       fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID),
-      $('fomoQuickTotalInvested').text(fomoQuickRoundInfo[6]),				     
-      $('fomoQuickKeys').text(fomoQuickRoundInfo[5]),
-      $('fomoQuickActivePot').text(fomoQuickRoundInfo[7]),
-      $('fomoQuickEarnings').text(fomoQuickRoundInfo[8]));				     
+      $('#fomoQuickTotalInvested').text(fomoQuickRoundInfo[6]),				     
+      $('#fomoQuickKeys').text(fomoQuickRoundInfo[5]),
+      $('#fomoQuickActivePot').text(fomoQuickRoundInfo[7]),
+      $('#fomoQuickEarnings').text(fomoQuickRoundInfo[8]));				     
     }, 3000);
   }	  
   async function updatePlayerInfo(object) {
