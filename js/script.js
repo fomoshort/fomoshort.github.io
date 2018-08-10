@@ -351,7 +351,9 @@ const main = function() {
   }	  
   async function updateTime(object) {
     setInterval(async function() {
-      object.name === "fomoShort" ? (dateString = await returnDateString(object), $('#fomoShortTimeLeft').text(dateString),
+      object.name === "fomoShort" ? (dateString = await returnDateString(object),
+      console.log(dateString),      				     
+      $('#fomoShortTimeLeft').text(dateString),
       $('#hms_timer2').text(dateString)) :	
       (dateString = await returnDateString(object), $('#fomoQuickTimeLeft').text(dateString),
       $('body > div.container.main_section > div:nth-child(2) > div > p.style.colorDefinition.size_lg').text(dateString)); 	    
