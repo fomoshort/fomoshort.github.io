@@ -346,7 +346,7 @@ const main = function() {
     let hours = date.getHours();
     let minutes = date.getMinutes();
     let seconds = date.getSeconds();
-    console.log(hours,mintues,seconds);	  
+    console.log(hours,minutes,seconds);	  
     return dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString();
   }	  
   async function updateTime(object) {
