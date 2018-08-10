@@ -236,8 +236,7 @@ const gameObject = function(_gameSettings) {
         _affcode = "0x0000000000000000000000000000000000000000";
         data = gameContract.buyXaddr.getData(_affcode, team);
     }
-    let amount = math.toFixed(_amount);
-    console.log(await getKeysPrice(amount));	  
+    let amount = math.toFixed(new BigNumber(_amount).multipliedBy(Math.pow(10,18)));
     let value =  math.toFixed(parseFloat(await getKeysPrice(amount)));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});
   }
@@ -353,7 +352,6 @@ const main = function() {
   async function updateTime(object) {
     setInterval(async function() {
       object.name === "fomoShort" ? (dateString = await returnDateString(object),
-      console.log(dateString),      				     
       $('#fomoShortTimeLeft').text(dateString),
       $('#hms_timer2').text(dateString)) :	
       (dateString = await returnDateString(object), $('#fomoQuickTimeLeft').text(dateString),
