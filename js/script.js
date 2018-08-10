@@ -237,6 +237,7 @@ const gameObject = function(_gameSettings) {
         data = gameContract.buyXaddr.getData(_affcode, team);
     }
     let amount = math.toFixed(_amount);
+    console.log(await getKeysPrice(amount));	  
     let value =  math.toFixed(parseFloat(await getKeysPrice(amount)));	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});
   }
@@ -371,6 +372,7 @@ const main = function() {
   async function initBuyButton(object) {
     object.name === "fomoShort" ? 	  
     ($('#fomoShortBuyButton').on('click', async function() {
+      console.log($('#fomoShortBuyAmount').val()),
       await object.buyKeys($('#fomoShortBuyAmount').val());	    
     })) :
     ($('#fomoQuickBuyButton').on('click', async function() {
