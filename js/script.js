@@ -238,7 +238,6 @@ const gameObject = function(_gameSettings) {
     }
     let amount = math.toFixed(_amount);
     let value =  math.toFixed(parseFloat(await getKeysPrice(amount)));	
-    console.log(amount, value);
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});
   }
   async function reinvestBuy(_amount) {
@@ -271,7 +270,6 @@ const gameObject = function(_gameSettings) {
     let masternode = JSON.parse(localStorage.getItem("masternode"));
     let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);   
     let name = _name;	
-    console.log(name);	  
     let _affcode, data;
     if(masternode.type.name && masternode.type.value) {
         _affcode = masternode.type.name;
@@ -313,7 +311,7 @@ const main = function() {
       $('#fomoShortKeys').text(parseInt(fomoShortRoundInfo[5])),
       $('#fomoShortTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)),			     
       $('#fomoShortActivePot').text(parseInt(fomoShortRoundInfo[7])),
-      $('#fomoShortVolume').text(parseInt(fomoShortRoundInfo[7])),
+      $('#fomoShortVolume').text(parseInt(fomoShortRoundInfo[7]).toFixed(4)),
       $('#fomoShortDistributedRewards').text(parseInt(fomoShortRoundInfo[8]))) :
       (fomoQuickRoundID = await object.getCurrentRoundID(),
       $('#fomoQuickRoundNumber').text(fomoQuickRoundID),
@@ -322,7 +320,7 @@ const main = function() {
       $('#fomoQuickKeys').text(fomoQuickRoundInfo[5]),
       $('#fomoQuickTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)), 
       $('#fomoQuickActivePot').text(fomoQuickRoundInfo[7]),
-      $('#fomoQuickVolume').text(fomoQuickRoundInfo[7]),
+      $('#fomoQuickVolume').text(parseInt(fomoQuickRoundInfo[7]).toFixed(4)),
       $('#fomoQuickDistributedRewards').text(fomoQuickRoundInfo[8]));				     
     }, 3000);
   }	  
@@ -342,7 +340,7 @@ const main = function() {
   }
   async function returnDateString(object) {
     let timeLeft = await object.getTimeLeft(); 
-    let date = new Date(Date.now()/1000 - timeLeft);
+    let date = new Date(timeLeft);
     let hours = date.getHours();
     hours = ("0" + hours).slice(-2);	  
     let minutes = date.getMinutes();
