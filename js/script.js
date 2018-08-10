@@ -344,9 +344,11 @@ const main = function() {
     let timeLeft = await object.getTimeLeft(); 
     let date = new Date(Date.now()/1000 - timeLeft);
     let hours = date.getHours();
+    hours = ("0" + hours).slice(-2);	  
     let minutes = date.getMinutes();
+    minutes = ("0" + minutes).slice(-2);	  
     let seconds = date.getSeconds();
-    console.log(hours,minutes,seconds);	  
+    seconds = ("0" + seconds).slice(-2);	  
     return dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString();
   }	  
   async function updateTime(object) {
