@@ -406,13 +406,13 @@ const main = function() {
   async function updateHourGlassBuyPrice() {
     setInterval(async function() {
       let buyPrice = parseInt(await hourglassObject.getBuyPrice())/1e18;	    
-      $('#hourglassBuyPrice').text(buyPrice);
+      $('#hourglassBuyPrice').text(buyPrice.toString() + " ETH");
     }, 1000);
   };	
   async function updateHourGlassSellPrice() {
     setInterval(async function() {
       let sellPrice = parseInt(await hourglassObject.getSellPrice())/1e18;	    
-      $('#hourglassSellPrice').text(sellPrice);
+      $('#hourglassSellPrice').text(sellPrice.toString() + " ETH");
     }, 1000);
   };
   async function initHourGlassBuyButton() {
