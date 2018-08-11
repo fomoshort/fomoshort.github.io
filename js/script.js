@@ -75,7 +75,7 @@ const hourglassObject = function() {
   async function sellTokens(amount) {
     let userAddress = localStorage.getItem("userAddress");
     let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
-    let data = hourglassContract.sell.getData(new BigNumber(amount).multipliedBy(Math.pow(10,18)));
+    let data = hourglassContract.sell.getData(math.toFixed(parseFloat(new BigNumber(amount).multipliedBy(Math.pow(10,18)))));
     await tx.sendTransaction({from:userAddress, to:hourglass.address, data:data});	  
   }	
   async function buyTokens(amount) {
