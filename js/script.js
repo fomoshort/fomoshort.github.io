@@ -328,7 +328,6 @@ const main = function() {
       (fomoQuickRoundID = await object.getCurrentRoundID(),
       $('#fomoQuickRoundNumber').text(fomoQuickRoundID),
       fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID),
-      console.log(fomoQuickRoundInfo), 
       $('#fomoQuickTotalInvested').text(fomoQuickRoundInfo[6]),				     
       $('#fomoQuickKeys').text(fomoQuickRoundInfo[5]),
       $('#fomoQuickTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)), 
@@ -363,7 +362,8 @@ const main = function() {
     return hours.toString() + " : " + minutes.toString() + " : " + seconds.toString();
   }	  
   async function updatedTimer(object) {
-    let roundObject = await object.getCurrentRoundInfo();	  
+    let roundObject = await object.getCurrentRoundInfo();
+    console.log(roundObject, parseInt(roundObject.end));	  
     let timeLeft = Date.now() - (parseInt(roundObject.end)*1000);	  
     let date = new Date(timeLeft*1000);
     let hours = date.getHours();
