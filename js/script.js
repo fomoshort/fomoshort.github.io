@@ -116,6 +116,18 @@ const gameObject = function(_gameSettings) {
       });
     });
   }	  
+  function getCurrentRoundInfo() {
+    return new Promise((resolve, reject) => {
+      let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
+      gameContract.getCurrentRoundInfo.call(function(err, result) {
+        if(!err) {
+          resolve(result);
+	} else {
+	    reject(err);
+	}
+      });
+    });
+  }		
   function getTimeLeft() {
     return new Promise((resolve, reject) => {
       let gameContract = web3.eth.contract(gameSettings.abi).at(gameSettings.address);
@@ -287,7 +299,7 @@ const gameObject = function(_gameSettings) {
     let value = math.toFixed(1e16);	
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data, value:value});	  
   }	  
-  return {getBuyPrice, getTimeLeft, getRound, getPlayerInfo, getCurrentRoundID, getVault, withdraw, buyKeys, reinvestBuy, registerName};  
+  return {getBuyPrice, getTimeLeft,getCurrentRoundInfo, getRound, getPlayerInfo, getCurrentRoundID, getVault, withdraw, buyKeys, reinvestBuy, registerName};  
 };
 const main = function() {
   async function updateVault(object) {
@@ -340,7 +352,6 @@ const main = function() {
   }
   async function returnDateString(object) {
     let timeLeft = parseInt(await object.getTimeLeft()); 
-    console.log(timeLeft);	  
     let date = new Date(timeLeft*1000);
     let hours = date.getHours();
     hours = ("0" + hours).slice(-2);	  
@@ -348,14 +359,26 @@ const main = function() {
     minutes = ("0" + minutes).slice(-2);	  
     let seconds = date.getSeconds();
     seconds = ("0" + seconds).slice(-2);	  
-    return dateString = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString();
+    return hours.toString() + " : " + minutes.toString() + " : " + seconds.toString();
+  }	  
+  async function updatedTimer(object) {
+    let roundObject = await object.getCurrentRoundInfo();	  
+    let timeLeft = Date.now() - (roundObject.end*1000);	  
+    let date = new Date(timeLeft*1000);
+    let hours = date.getHours();
+    hours = ("0" + hours).slice(-2);	  
+    let minutes = date.getMinutes();
+    minutes = ("0" + minutes).slice(-2);	  
+    let seconds = date.getSeconds();
+    seconds = ("0" + seconds).slice(-2);	  
+    return hours.toString() + " : " + minutes.toString() + " : " + seconds.toString();
   }	  
   async function updateTime(object) {
     setInterval(async function() {
-      object.name === "fomoShort" ? (dateString = await returnDateString(object),
+      object.name === "fomoShort" ? (dateString = await updatedTimer(object),
       $('#fomoShortTimeLeft').text(dateString),
       $('#hms_timer2').text(dateString)) :	
-      (dateString = await returnDateString(object), $('#fomoQuickTimeLeft').text(dateString),
+      (dateString = await updatedTimer(object), $('#fomoQuickTimeLeft').text(dateString),
       $('body > div.container.main_section > div:nth-child(2) > div > p.style.colorDefinition.size_lg').text(dateString)); 	    
     }, 1000);	    
   }
