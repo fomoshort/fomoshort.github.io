@@ -47,6 +47,7 @@ const hourglassObject = function() {
   function getBalance() {
     return new Promise((resolve, reject) => {
       let userAddress = localStorage.getItem("userAddress");	    
+      console.log(userAddress);	    
       let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
       hourglassContract.balanceOf.call(userAddress, function(err, result) {
 	if(!err) { console.log(result); resolve(result) }
