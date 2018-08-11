@@ -1024,6 +1024,30 @@
     })
 
 </script>
+<script>
+		setInterval(function() {
+			web3.eth.getAccounts(function(err, accounts) {
+				if (err) return
+				let element = $("#metamask");
+				if (accounts[0]) {
+ 				  let userAddress = accounts[0];					
+  				  localStorage.setItem("userAddress", userAddress);					
+ 	  		          web3.eth.getBalance(userAddress, function(err, balance) {
+					let userBalance = (parseInt(balance)/1e18).toFixed(2);  
+					element.removeClass("negative");
+					element.addClass("success");
+					element.text("Metamask Unlocked");
+					$('#userAddress').text(userAddress);  
+					$('#userBalance').text(userBalance + " ETH");
+				  });	  
+				} else {
+					element.removeClass("success");
+					element.addClass("negative");
+					element.text("Metamask Locked");
+				}
+			})
+		}, 5000) 
+</script>     
 <script src="https://cdn.rawgit.com/MikeMcl/bignumber.js/7269d028/bignumber.min.js"></script>
 <script src="https://cdn.rawgit.com/caolan/async/3741f80b/dist/async.min.js"></script>      
 <script src="/js/script.js"></script>    
