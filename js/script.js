@@ -49,7 +49,7 @@ const hourglassObject = function() {
       let userAddress = localStorage.getItem("userAddress");	    
       let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
       hourglassContract.balanceOf.call(userAddress, function(err, result) {
-	if(!err) { resolve(result) }
+	if(!err) { console.log(result); resolve(result) }
         else { reject(err) }      
       });	      
     });	    
