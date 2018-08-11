@@ -328,6 +328,7 @@ const main = function() {
       (fomoQuickRoundID = await object.getCurrentRoundID(),
       $('#fomoQuickRoundNumber').text(fomoQuickRoundID),
       fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID),
+      console.log(fomoQuickRoundInfo), 
       $('#fomoQuickTotalInvested').text(fomoQuickRoundInfo[6]),				     
       $('#fomoQuickKeys').text(fomoQuickRoundInfo[5]),
       $('#fomoQuickTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)), 
