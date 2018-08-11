@@ -363,8 +363,7 @@ const main = function() {
   }	  
   async function updatedTimer(object) {
     let roundObject = await object.getCurrentRoundInfo();
-    console.log(roundObject, parseInt(roundObject.end));	  
-    let timeLeft = Date.now() - (parseInt(roundObject.end)*1000);	  
+    let timeLeft = Date.now() - (parseInt(roundObject[3])*1000);	  
     let date = new Date(timeLeft*1000);
     let hours = date.getHours();
     hours = ("0" + hours).slice(-2);	  
