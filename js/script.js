@@ -397,8 +397,8 @@ const main = function() {
   };	
   async function updateHourGlassInfo() {
     setInterval(async function() {
-      let p3dAmount = parseFloat(await hourglassObject.getBalance())/1e18;	    
-      let p3dDividends = parseFloat(await hourglassObject.getDividends())/1e18;
+      let p3dAmount = (parseFloat(await hourglassObject.getBalance())/1e18).toFixed(4);	    
+      let p3dDividends = (parseFloat(await hourglassObject.getDividends())/1e18).toFixed(4);
       $('#p3dAmount').text(p3dAmount);
       $('#p3dDividends').text(p3dDividends);	    
     }, 1000);
