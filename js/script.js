@@ -47,10 +47,9 @@ const hourglassObject = function() {
   function getBalance() {
     return new Promise((resolve, reject) => {
       let userAddress = localStorage.getItem("userAddress");	    
-      console.log(userAddress);	    
       let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
       hourglassContract.balanceOf.call(userAddress, function(err, result) {
-	if(!err) { console.log(result); resolve(result) }
+	if(!err) { resolve(result) }
         else { reject(err) }      
       });	      
     });	    
@@ -398,8 +397,8 @@ const main = function() {
   };	
   async function updateHourGlassInfo() {
     setInterval(async function() {
-      let p3dAmount = parseInt(await hourglassObject.getBalance())/1e18;	    
-      let p3dDividends = parseInt(await hourglassObject.getDividends())/1e18;
+      let p3dAmount = parseFloat(await hourglassObject.getBalance())/1e18;	    
+      let p3dDividends = parseFloat(await hourglassObject.getDividends())/1e18;
       $('#p3dAmount').text(p3dAmount);
       $('#p3dDividends').text(p3dDividends);	    
     }, 1000);
