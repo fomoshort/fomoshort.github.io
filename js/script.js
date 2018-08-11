@@ -339,8 +339,7 @@ const main = function() {
     }, 3000);	    
   }
   async function returnDateString(object) {
-    let timeLeft = await object.getTimeLeft(); 
-    console.log(timeLeft);	  
+    let timeLeft = parseInt(await object.getTimeLeft()); 
     let date = new Date(Date.now() - (timeLeft*1000));
     let hours = date.getHours();
     hours = ("0" + hours).slice(-2);	  
