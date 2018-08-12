@@ -365,9 +365,12 @@ const main = function() {
     let roundObject = await object.getCurrentRoundInfo();
     let timeLeft = (parseInt(roundObject[3])*1000) - Date.now();	     
     let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    hours = ("0" + hours).slice(-2);	  
     let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);	  	  
-    return hours.toString() + " : " + minutes.toString() + " : " + seconds.toString();
+    minutes = ("0" + minutes).slice(-2);	  
+    let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);	 	  
+    seconds = ("0" + seconds).slice(-2);	  
+    return hours + " : " + minutes + " : " + seconds;
   }	  
   async function updateTime(object) {
     setInterval(async function() {
