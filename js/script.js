@@ -491,8 +491,8 @@ const main = function() {
     });	     
   }		
   async function initRegisterNameButton(object) {
-    $('#myModal > div > div > div.modal-body > div.bottoms > a').on('click', async function() {
-      await object.registerName($('#myModal > div > div > div.modal-body > div.input-group.custom_group > input').val());	   
+    $('#registerNameButton').on('click', async function() {
+      await object.registerName($('#registerNameInput').val());	   
     });	    
   }	
   async function initHourGlass() {
