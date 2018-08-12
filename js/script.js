@@ -305,7 +305,7 @@ const main = function() {
   async function updateVault(object) {
     setInterval(async function() {
       object.name === "fomoShort" ? (fomoShortVault = await object.getVault(),
-      $('#fomoShortGameEarnings').text(fomoShortVault[0]), $('#fomoShortEarnings').text(fomoShortVault[0]),
+      $('#fomoShortGameEarnings').text(fomoShortVault[0]), $('#fomoShortEarnings').text((parseInt(fomoShortVault[0])/1e18).toFixed(4)),
       $('#fomoShortGameWinnings').text((parseInt(fomoShortVault[1])/1e18).toFixed(4)), $('#fomoShortAffiliateEarnings').text(fomoShortVault[2])) :
       (fomoQuickVault = await object.getVault(),
       $('#fomoQuickGameEarnings').text(fomoQuickVault[0]),
