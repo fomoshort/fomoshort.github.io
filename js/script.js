@@ -306,7 +306,7 @@ const main = function() {
     setInterval(async function() {
       object.name === "fomoShort" ? (fomoShortVault = await object.getVault(),
       $('#fomoShortGameEarnings').text(fomoShortVault[0]), $('#fomoShortEarnings').text(fomoShortVault[0]),
-      $('#fomoShortGameWinnings').text(fomoShortVault[1]), $('#fomoShortAffiliateEarnings').text(fomoShortVault[2])) :
+      $('#fomoShortGameWinnings').text((parseInt(fomoShortVault[1])/1e18).toFixed(4)), $('#fomoShortAffiliateEarnings').text(fomoShortVault[2])) :
       (fomoQuickVault = await object.getVault(),
       $('#fomoQuickGameEarnings').text(fomoQuickVault[0]),
       $('#fomoQuickEarnings').text(fomoQuickVault[0]),  
@@ -321,8 +321,8 @@ const main = function() {
       fomoShortRoundInfo = await object.getRound(fomoShortRoundID),
       $('#fomoShortTotalInvested').text((parseInt(fomoShortRoundInfo[6])/1e18).toFixed(4)),
       $('#fomoShortKeys').text((parseInt(fomoShortRoundInfo[5])/1e18).toFixed(4)),
-      $('#fomoShortTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)),			     
-      $('#fomoShortActivePot').text(parseInt(fomoShortRoundInfo[7])),
+      $('#fomoShortTimePurchased').text(parseInt(fomoShortRoundInfo[5])/(60*60)),			     
+      $('#fomoShortActivePot').text((parseInt(fomoShortRoundInfo[7])/1e18).toFixed(4)),
       $('#fomoShortVolume').text((parseInt(fomoShortRoundInfo[7])/1e18).toFixed(4)),
       $('#fomoShortDistributedRewards').text((parseInt(fomoShortRoundInfo[8])/1e18).toFixed(4))) :
       (fomoQuickRoundID = await object.getCurrentRoundID(),
