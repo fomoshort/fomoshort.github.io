@@ -319,21 +319,21 @@ const main = function() {
       object.name === "fomoShort" ? (fomoShortRoundID = await object.getCurrentRoundID(),
       $('#fomoShortRoundNumber').text(fomoShortRoundID), 
       fomoShortRoundInfo = await object.getRound(fomoShortRoundID),
-      $('#fomoShortTotalInvested').text(parseInt(fomoShortRoundInfo[6])),
-      $('#fomoShortKeys').text(parseInt(fomoShortRoundInfo[5])),
+      $('#fomoShortTotalInvested').text((parseInt(fomoShortRoundInfo[6])/1e18).toFixed(4)),
+      $('#fomoShortKeys').text((parseInt(fomoShortRoundInfo[5])/1e18).toFixed(4)),
       $('#fomoShortTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)),			     
       $('#fomoShortActivePot').text(parseInt(fomoShortRoundInfo[7])),
-      $('#fomoShortVolume').text(parseInt(fomoShortRoundInfo[7]).toFixed(4)),
-      $('#fomoShortDistributedRewards').text(parseInt(fomoShortRoundInfo[8]))) :
+      $('#fomoShortVolume').text((parseInt(fomoShortRoundInfo[7])/1e18).toFixed(4)),
+      $('#fomoShortDistributedRewards').text((parseInt(fomoShortRoundInfo[8])/1e18).toFixed(4)) :
       (fomoQuickRoundID = await object.getCurrentRoundID(),
       $('#fomoQuickRoundNumber').text(fomoQuickRoundID),
       fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID),
-      $('#fomoQuickTotalInvested').text(fomoQuickRoundInfo[6]),				     
-      $('#fomoQuickKeys').text(fomoQuickRoundInfo[5]),
+      $('#fomoQuickTotalInvested').text((parseInt(fomoQuickRoundInfo[6])/1e18).toFixed(4)),				     
+      $('#fomoQuickKeys').text((parseInt(fomoQuickRoundInfo[5])/1e18).toFixed(4)),
       $('#fomoQuickTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)), 
-      $('#fomoQuickActivePot').text(fomoQuickRoundInfo[7]),
-      $('#fomoQuickVolume').text(parseInt(fomoQuickRoundInfo[7]).toFixed(4)),
-      $('#fomoQuickDistributedRewards').text(fomoQuickRoundInfo[8]));				     
+      $('#fomoQuickActivePot').text((parseInt(fomoQuickRoundInfo[7])/1e18).toFixed(4)),
+      $('#fomoQuickVolume').text((parseInt(fomoQuickRoundInfo[7])/1e18).toFixed(4)),
+      $('#fomoQuickDistributedRewards').text((parseInt(fomoQuickRoundInfo[8]))/1e18).toFixed(4));				     
     }, 3000);
   }	  
   async function updatePlayerInfo(object) {
