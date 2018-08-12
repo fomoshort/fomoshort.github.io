@@ -39,7 +39,7 @@ const playerbookObject = function() {
       let playerbookContract = web3.eth.contract(playerbook.abi).at(playerbook.address);	    
       playerbookContract.getPlayerName.call(id, function(err, result) {
 	if(!err) {
-	  resolve("https://fomoshort.github.io/" + web3.toAscii(result).toString());		
+	  resolve("https://fomoshort.github.io/" + web3.toAscii(result).replace(/\s/g, ''));		
         }	       
         else { reject(err) }      
       });	      
