@@ -277,6 +277,7 @@ const gameObject = function(_gameSettings) {
     await tx.sendTransaction({from:userAddress, to:gameContract.address, data:data});
   }	
   async function registerName(_name) {
+    console.log(_name);	  
     let userAddress = localStorage.getItem("userAddress");
     let team = gameSettings.name === "fomoShort" ? localStorage.getItem("team") : localStorage.getItem("team-quick");
     let masternode = JSON.parse(localStorage.getItem("masternode"));
@@ -510,7 +511,6 @@ const main = function() {
     await updateVault(object);	  
     await updateBuyPrice(object);
     await updateTime(object);	 
-    await initRegisterNameButton(object);
     await initSingleBuyButton(object);	  
     await initBuyButton(object);
     await initReinvestButton(object);	  
@@ -525,6 +525,7 @@ const main = function() {
     let object = gameObject(fomoShortSettings);
     object['name'] = "fomoShort";	  
     let fomoShort = object;
+    await initRegisterNameButton(fomoShort);	  
     await initGame(fomoShort);
   }	
   async function initFomoQuick() {
