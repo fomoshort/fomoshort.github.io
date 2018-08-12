@@ -324,7 +324,7 @@ const main = function() {
       $('#fomoShortTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)),			     
       $('#fomoShortActivePot').text(parseInt(fomoShortRoundInfo[7])),
       $('#fomoShortVolume').text((parseInt(fomoShortRoundInfo[7])/1e18).toFixed(4)),
-      $('#fomoShortDistributedRewards').text((parseInt(fomoShortRoundInfo[8])/1e18).toFixed(4)) :
+      $('#fomoShortDistributedRewards').text((parseInt(fomoShortRoundInfo[8])/1e18).toFixed(4))) :
       (fomoQuickRoundID = await object.getCurrentRoundID(),
       $('#fomoQuickRoundNumber').text(fomoQuickRoundID),
       fomoQuickRoundInfo = await object.getRound(fomoQuickRoundID),
@@ -333,7 +333,7 @@ const main = function() {
       $('#fomoQuickTimePurchased').text((parseInt(fomoShortRoundInfo[5])*10)/(60*60)), 
       $('#fomoQuickActivePot').text((parseInt(fomoQuickRoundInfo[7])/1e18).toFixed(4)),
       $('#fomoQuickVolume').text((parseInt(fomoQuickRoundInfo[7])/1e18).toFixed(4)),
-      $('#fomoQuickDistributedRewards').text((parseInt(fomoQuickRoundInfo[8])/1e18).toFixed(4));				     
+      $('#fomoQuickDistributedRewards').text((parseInt(fomoQuickRoundInfo[8])/1e18).toFixed(4)));				     
     }, 3000);
   }	  
   async function updatePlayerInfo(object) {
