@@ -321,7 +321,7 @@ const main = function() {
       fomoShortRoundInfo = await object.getRound(fomoShortRoundID),
       $('#fomoShortTotalInvested').text((parseInt(fomoShortRoundInfo[6])/1e18).toFixed(4)),
       $('#fomoShortKeys').text((parseInt(fomoShortRoundInfo[5])/1e18).toFixed(4)),
-      $('#fomoShortTimePurchased').text(parseInt(fomoShortRoundInfo[5])/(60*60)),			     
+      $('#fomoShortTimePurchased').text((parseInt(parseInt(fomoShortRoundInfo[5])/1e18)*30)/60),			     
       $('#fomoShortActivePot').text((parseInt(fomoShortRoundInfo[7])/1e18).toFixed(4)),
       $('#fomoShortVolume').text((parseInt(fomoShortRoundInfo[7])/1e18).toFixed(4)),
       $('#fomoShortDistributedRewards').text((parseInt(fomoShortRoundInfo[8])/1e18).toFixed(4))) :
