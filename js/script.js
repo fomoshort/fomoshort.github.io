@@ -390,7 +390,7 @@ const main = function() {
   async function updatedTimer(object) {
     let roundObject = await object.getCurrentRoundInfo();
     let timeLeft = (parseInt(roundObject[3])*1000) - Date.now();	     
-    console.log(timeLeft,parseInt(roundObject[3])*1000,Date.now());	  
+    timeLeft = timeLeft > 0 ? timeLeft : 0;	  
     let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     hours = ("0" + hours).slice(-2);	  
     let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
