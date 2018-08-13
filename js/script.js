@@ -526,7 +526,7 @@ const main = function() {
     let playerbook = playerbookObject();	  
     let playerID = await playerbook.getPID();	  
     let playerName = await playerbook.getPlayerName(playerID);	  
-    $('#fomoShortRefLink').text(playerName);
+    $('.fomoShortRefLink').text(playerName);
   }	  
   async function initHourGlass() {
     await updateHourGlassInfo();	  
