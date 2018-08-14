@@ -462,12 +462,6 @@ const main = function() {
       $('#p3dDividends').text(p3dDividends + " ETH");	    
     }, 1000);
   };	
-  async function updateHourGlassSellPrice() {
-    setInterval(async function() {
-      let sellPrice = parseInt(await hourglassObject.getSellPrice())/1e18;	    
-      $('#hourglassSellPrice').text(sellPrice.toString() + " ETH");
-    }, 1000);
-  };
   async function initHourGlassBuyButton() {
     $('#hourglassBuyButton').on('click', async function() {
       await hourglassObject.buyTokens($('#buy_p3d > div.input-group.custom_group > input').val());	    
@@ -487,7 +481,13 @@ const main = function() {
     $('#hourglassReinvest').on('click', async function() {
       await hourglassObject.reinvest();	    
     });	  
-  };	
+  };
+  function initHourGlassSellAmountUpdater() {
+    $('#sell_p3d > div.input-group.custom_group > input').on('input', async function() {	 
+      let p3dAmount = await hourglassObject.calculateEthereumReceived($('#sell_p3d > div.input-group.custom_group > input').val());	 
+      $('#hourglassSellPrice').text((parseFloat(p3dAmount)/1e18).toFixed(4) + " ETH");	    
+    });	    
+  }	  	
   function initHourGlassBuyAmountUpdater() {
     $('#buy_p3d > div.input-group.custom_group > input').on('input', async function() {	 
       let ethAmount = await hourglassObject.calculateTokensReceived($('#buy_p3d > div.input-group.custom_group > input').val());	 
@@ -539,12 +539,12 @@ const main = function() {
   }	  
   async function initHourGlass() {
     await updateHourGlassInfo();	  
-    await updateHourGlassSellPrice(); 
     await initHourGlassBuyButton();
     await initHourGlassSellButton();
     await initHourGlassWithdrawButton();	  
     await initHourGlassReinvestButton();	  
     await initHourGlassBuyAmountUpdater();	  
+    await initHourGlassSellAmountUpdater();	  
   }	
   async function initGame(object) {
     await updateRoundInfo(object);	  
