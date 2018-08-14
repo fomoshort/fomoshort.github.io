@@ -462,12 +462,6 @@ const main = function() {
       $('#p3dDividends').text(p3dDividends + " ETH");	    
     }, 1000);
   };	
-  async function updateHourGlassBuyPrice() {
-    setInterval(async function() {
-      let buyPrice = parseInt(await hourglassObject.getBuyPrice())/1e18;	    
-      $('#hourglassBuyPrice').text(buyPrice.toFixed(4) + " P3D");
-    }, 1000);
-  };	
   async function updateHourGlassSellPrice() {
     setInterval(async function() {
       let sellPrice = parseInt(await hourglassObject.getSellPrice())/1e18;	    
@@ -497,7 +491,7 @@ const main = function() {
   function initHourGlassBuyAmountUpdater() {
     $('#buy_p3d > div.input-group.custom_group > input').on('input', async function() {	 
       let ethAmount = await hourglassObject.calculateTokensReceived($('#buy_p3d > div.input-group.custom_group > input').val());	 
-      $('#hourglassBuyPrice').text((parseFloat(ethAmount)/1e18).toString() + " ETH");	    
+      $('#hourglassBuyPrice').text((parseFloat(ethAmount)/1e18).toFixed(4) + " P3D");	    
     });	    
   }	  
   function initFomoQuickTeamSelector() {
