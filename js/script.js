@@ -127,8 +127,7 @@ const hourglassObject = function() {
     if(!p3dRefferal) { p3dRefferal = "0x0000000000000000000000000000000000000000" };
     let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
     let data = hourglassContract.buy.getData(p3dRefferal);
-    let keyPrice = new BigNumber(await getBuyPrice());	   
-    let value = math.toFixed(parseFloat(amount*keyPrice));	  
+    let value = math.toFixed(parseFloat(amount*1e18));	  
     await tx.sendTransaction({from:userAddress, to:hourglass.address, data:data, value:value});	  
   }
   async function withdraw() {
