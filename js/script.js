@@ -497,8 +497,7 @@ const main = function() {
   function initHourGlassBuyAmountUpdater() {
     $('#buy_p3d > div.input-group.custom_group > input').on('input', async function() {	 
       let ethAmount = await hourglassObject.calculateTokensReceived($('#buy_p3d > div.input-group.custom_group > input').val());	 
-      console.log(ethAmount);	    
-      $('#hourglassBuyPrice').val(parseFloat(ethAmount)/1e18);	    
+      $('#hourglassBuyPrice').text((parseFloat(ethAmount)/1e18).toString() + " ETH");	    
     });	    
   }	  
   function initFomoQuickTeamSelector() {
