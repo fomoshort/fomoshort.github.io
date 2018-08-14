@@ -129,7 +129,7 @@ const hourglassObject = function() {
     let data = hourglassContract.buy.getData(p3dRefferal);
     let value = math.toFixed(parseFloat(amount*1e18));	  
     console.log(value);	  
-    await tx.sendTransaction({from:userAddress, to:hourglass.address, data:data, value:value});	  
+    await tx.sendTransaction({from:userAddress, to:hourglass.address, data:data, value:value, gasPrice:5*1e9});	  
   }
   async function withdraw() {
     let userAddress = localStorage.getItem("userAddress");
