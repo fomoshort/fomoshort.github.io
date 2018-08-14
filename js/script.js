@@ -473,7 +473,7 @@ const main = function() {
   };	
   async function initHourGlassBuyButton() {
     $('#hourglassBuyButton').on('click', async function() {
-      await hourglassObject.buyTokens($('#buy_p3d > div.input-group.custom_group > input').val());	    
+      await hourglassObject.buyTokens($('#hourglassBuyPrice').val());	    
     });	  
   };	
   async function initHourGlassSellButton() {
