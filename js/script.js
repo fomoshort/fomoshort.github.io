@@ -546,7 +546,6 @@ const main = function() {
   }	  
   async function initHourGlass() {
     await updateHourGlassInfo();	  
-    await updateHourGlassBuyPrice();
     await updateHourGlassSellPrice(); 
     await initHourGlassBuyButton();
     await initHourGlassSellButton();
