@@ -465,7 +465,7 @@ const main = function() {
   async function updateHourGlassBuyPrice() {
     setInterval(async function() {
       let buyPrice = parseInt(await hourglassObject.getBuyPrice())/1e18;	    
-      $('#hourglassBuyPrice').text(buyPrice.toString() + " ETH");
+      $('#hourglassBuyPrice').text(buyPrice.toFixed(4) + " P3D");
     }, 1000);
   };	
   async function updateHourGlassSellPrice() {
