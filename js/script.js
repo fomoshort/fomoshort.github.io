@@ -496,8 +496,9 @@ const main = function() {
   };	
   function initHourGlassBuyAmountUpdater() {
     $('#buy_p3d > div.input-group.custom_group > input').on('input', async function() {	 
-      console.log($('#buy_p3d > div.input-group.custom_group > input').val());	    
-      await calculateTokensReceived($('#buy_p3d > div.input-group.custom_group > input').val());	 
+      let ethAmount = await hourglassObject.calculateTokensReceived($('#buy_p3d > div.input-group.custom_group > input').val());	 
+      console.log(ethAmount);	    
+      $('#hourglassBuyPrice').val(parseFloat(ethAmount)/1e18);	    
     });	    
   }	  
   function initFomoQuickTeamSelector() {
