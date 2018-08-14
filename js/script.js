@@ -69,6 +69,15 @@ const hourglassObject = function() {
       });	      
     });	    
   }	
+  function calculateEthereumReceived(amount) {
+    return new Promise((resolve, reject) => {
+      let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
+      hourglassContract.calculateEthereumReceived.call(math.toFixed(parseFloat(new BigNumber(amount).multipliedBy(Math.pow(10,18)))), function(err, result) {
+	if(!err) { resolve(result) }
+        else { reject(err) }      
+      });	      
+    });	    
+  }    
   function calculateTokensReceived(amount) {
     return new Promise((resolve, reject) => {
       let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
@@ -134,7 +143,7 @@ const hourglassObject = function() {
     let data = hourglassContract.reinvest.getData();
     await tx.sendTransaction({from:userAddress, to:hourglass.address, data:data});	  
   }	
-  return {getSellPrice, getBuyPrice, getDividends, getBalance, calculateTokensReceived, sellTokens, buyTokens, withdraw, reinvest};			     
+  return {getSellPrice, getBuyPrice, getDividends, getBalance, calculateEthereumReceived, calculateTokensReceived, sellTokens, buyTokens, withdraw, reinvest};			     
 }();	
 const gameObject = function(_gameSettings) {
   let gameSettings = _gameSettings;
