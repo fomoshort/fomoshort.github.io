@@ -128,6 +128,7 @@ const hourglassObject = function() {
     let hourglassContract = web3.eth.contract(hourglass.abi).at(hourglass.address);	    
     let data = hourglassContract.buy.getData(p3dRefferal);
     let value = math.toFixed(parseFloat(amount*1e18));	  
+    console.log(value);	  
     await tx.sendTransaction({from:userAddress, to:hourglass.address, data:data, value:value});	  
   }
   async function withdraw() {
@@ -472,7 +473,7 @@ const main = function() {
   };	
   async function initHourGlassBuyButton() {
     $('#hourglassBuyButton').on('click', async function() {
-      await hourglassObject.buyTokens($('#hourglassBuyPrice').val());	    
+      await hourglassObject.buyTokens($('#buy_p3d > div.input-group.custom_group > input').val());	    
     });	  
   };	
   async function initHourGlassSellButton() {
