@@ -382,7 +382,8 @@ const main = function() {
   }	  
   async function updatePlayerInfo(object) {
     setInterval(async function() {
-      object.name === "fomoShort" ? (playerInfo = await object.getPlayerInfo(), $('#fomoShortPlayerKeys').text((parseFloat(playerInfo[2])/1e18).toString()) :
+      object.name === "fomoShort" ? (playerInfo = await object.getPlayerInfo(),
+      $('#fomoShortPlayerKeys').text((parseFloat(playerInfo[2])/1e18).toString())) :
       (playerInfo = await object.getPlayerInfo(), $('#fomoQuickPlayerKeys').text(playerInfo[2]));
     }, 3000);	    
   }	  
